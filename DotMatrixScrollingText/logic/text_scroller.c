@@ -5,6 +5,7 @@
  *  Author: Ruben
  */
 #include <stdint.h>
+#include <string.h>
 #include <ctype.h>
 #include <stddef.h>
 
@@ -13,10 +14,12 @@
 #include "text_scroller.h"
 #include "dot_matrix_characters.h"
 
-//char text_buffer[TEXT_MAX_SIZE][DOT_MATRIX_MAX_ROWS]; // text_buffer is a prefilled dictionary so we only have to lookup once. (can't do this)
+//char text_buffer[TEXT_MAX_SIZE][DOT_MATRIX_MAX_ROWS]; // text_buffer is a prefilled dictionary so we only have to lookup once. (can't do this. would allocate (256 x 8) bytes)
 char *text_buffer;
+uint8_t text_length;
 
 uint8_t text_index = 0;
+uint8_t char_offset = 0;
 
 uint8_t scroll_speed = 0;
 uint8_t scroll_update_counter = 0;
@@ -48,6 +51,7 @@ void text_scroller_set_text(char text[TEXT_MAX_SIZE], size_t len)
         memcpy(text_buffer[i], dot_matrix_characters_lookup(c), sizeof(text_buffer[i])); // Fill the text_buffer once using memcpy and a dictionary lookup.
     }*/
     text_buffer = text;
+    text_length = strlen(text_buffer);
 }
 
 void text_scroller_update(void)
@@ -55,6 +59,13 @@ void text_scroller_update(void)
     if (scroll_update_counter >= scroll_speed)
     {
         scroll_update_counter = 0;
+        char *data = dot_matrix_characters_lookup(text_buffer[text_index]);
+        dot_matrix_draw_character(data, char_offset);
+        char_offset++;
+        if (char_offset >= DOT_MATRIX_MAX_COLS)
+        {
+            char_offset = 0;
+        }
     }
     scroll_update_counter++;
 }

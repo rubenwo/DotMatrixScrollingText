@@ -11,8 +11,8 @@
 #include <util/delay.h>
 #include <string.h>
 
-
 #include "drivers/i2c.h"
+
 #include "logic/text_scroller.h"
 
 int main(void)
@@ -24,7 +24,6 @@ int main(void)
     text_scroller_set_text(text, strlen(text));
     while (1)
     {
-
         text_scroller_update();
         _delay_ms(GLOBAL_UPDATE_RATE);
     }
