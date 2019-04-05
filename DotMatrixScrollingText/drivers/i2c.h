@@ -23,7 +23,7 @@ void i2c_wait(void);
 
 void i2c_stop(void);
 
-void i2c_select(uint8_t addr, I2C_MODE mode);
+void i2c_select(uint8_t address, I2C_MODE mode);
 
 void i2c_write(uint8_t data);
 

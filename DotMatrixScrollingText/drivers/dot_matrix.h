@@ -8,6 +8,7 @@
 #ifndef DOT_MATRIX_H_
 #define DOT_MATRIX_H_
 #define DOT_MATRIX_MAX_ROWS 8
+#define DOT_MATRIX_MAX_COLS 8
 
 void dot_matrix_init(void);
 
@@ -17,6 +18,11 @@ void dot_matrix_fill(void);
 
 void dot_matrix_draw_row(int row, int data);
 
-void dot_matrix_draw_character(char data[DOT_MATRIX_MAX_ROWS]);
+/*
+dot_matrix_draw_character
+@param data - 
+@param offset - offset indicates how 
+*/
+void dot_matrix_draw_character(char data[DOT_MATRIX_MAX_ROWS], uint8_t offset);
 
 #endif /* DOT_MATRIX_H_ */
