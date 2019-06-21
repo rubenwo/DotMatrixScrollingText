@@ -5,12 +5,12 @@ c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/..
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_copy_data.o)
                               dictionary.o (__do_copy_data)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_clear_bss.o)
-                              led_matrix_driver.o (__do_clear_bss)
+                              led_matrix_scroller.o (__do_clear_bss)
 
 Allocating common symbols
 Common symbol       size              file
 
-buffer              0x2bc             led_matrix_driver.o
+buffer              0x2bc             led_matrix_scroller.o
 
 Discarded input sections
 
@@ -22,14 +22,13 @@ Discarded input sections
  .text          0x00000000        0x0 led_matrix_driver.o
  .data          0x00000000        0x0 led_matrix_driver.o
  .bss           0x00000000        0x0 led_matrix_driver.o
- .text.stopDotmatrix
-                0x00000000        0x8 led_matrix_driver.o
- .text.clearDotmatrixBuffer
-                0x00000000       0x14 led_matrix_driver.o
+ .text          0x00000000        0x0 led_matrix_scroller.o
+ .data          0x00000000        0x0 led_matrix_scroller.o
+ .bss           0x00000000        0x0 led_matrix_scroller.o
  .text.scrollRight
-                0x00000000      0x110 led_matrix_driver.o
- .text.setScrollingSpeed
-                0x00000000        0xa led_matrix_driver.o
+                0x00000000      0x106 led_matrix_scroller.o
+ .text.clearDotmatrixBuffer
+                0x00000000       0x14 led_matrix_scroller.o
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
@@ -100,6 +99,7 @@ Address of section .data set to 0x800100
 LOAD C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.3.300/gcc/dev/atmega128/avr51/crtatmega128.o
 LOAD dictionary.o
 LOAD led_matrix_driver.o
+LOAD led_matrix_scroller.o
 LOAD main.o
 START GROUP
 LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libm.a
@@ -208,7 +208,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x564
+.text           0x00000000      0x570
  *(.vectors)
  .vectors       0x00000000       0x8c C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.3.300/gcc/dev/atmega128/avr51/crtatmega128.o
                 0x00000000                __vector_default
@@ -304,38 +304,45 @@ END GROUP
                 0x000000c6                __vector_20
                 0x000000c8                . = ALIGN (0x2)
  *(.text.*)
- .text.look_up  0x000000c8       0x86 dictionary.o
-                0x000000c8                look_up
- .text.startDotmatrix
+ .text.look_up_character
+                0x000000c8       0x86 dictionary.o
+                0x000000c8                look_up_character
+ .text.start_led_matrix
                 0x0000014e       0x12 led_matrix_driver.o
-                0x0000014e                startDotmatrix
- .text.writeToDotmatrix
-                0x00000160       0x16 led_matrix_driver.o
-                0x00000160                writeToDotmatrix
- .text.dotmatrixInit
-                0x00000176       0xc0 led_matrix_driver.o
-                0x00000176                dotmatrixInit
- .text.clearDisplay
-                0x00000236       0x9a led_matrix_driver.o
-                0x00000236                clearDisplay
+                0x0000014e                start_led_matrix
+ .text.stop_led_matrix
+                0x00000160        0x8 led_matrix_driver.o
+                0x00000160                stop_led_matrix
+ .text.write_led_matrix
+                0x00000168       0x16 led_matrix_driver.o
+                0x00000168                write_led_matrix
+ .text.init_led_matrix
+                0x0000017e       0xc0 led_matrix_driver.o
+                0x0000017e                init_led_matrix
+ .text.clear_led_matrix_display
+                0x0000023e       0x9a led_matrix_driver.o
+                0x0000023e                clear_led_matrix_display
  .text.selectLetters
-                0x000002d0      0x142 led_matrix_driver.o
-                0x000002d0                selectLetters
+                0x000002d8      0x142 led_matrix_scroller.o
+                0x000002d8                selectLetters
  .text.scrollLeft
-                0x00000412      0x102 led_matrix_driver.o
-                0x00000412                scrollLeft
+                0x0000041a       0xf6 led_matrix_scroller.o
+                0x0000041a                scrollLeft
+ .text.setScrollingSpeed
+                0x00000510        0xa led_matrix_scroller.o
+                0x00000510                setScrollingSpeed
  .text.getScrollingSpeed
-                0x00000514        0xa led_matrix_driver.o
-                0x00000514                getScrollingSpeed
- .text.wait     0x0000051e       0x22 main.o
-                0x0000051e                wait
- .text.main     0x00000540       0x20 main.o
-                0x00000540                main
-                0x00000560                . = ALIGN (0x2)
+                0x0000051a        0xa led_matrix_scroller.o
+                0x0000051a                getScrollingSpeed
+ .text.wait     0x00000524       0x22 main.o
+                0x00000524                wait
+ .text.main     0x00000546       0x26 main.o
+                0x00000546                main
+                0x0000056c                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000560        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
-                0x00000560                _exit
-                0x00000560                exit
+ .fini9         0x0000056c        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
+                0x0000056c                _exit
+                0x0000056c                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -354,52 +361,53 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000560        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
+ .fini0         0x0000056c        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000564                _etext = .
+                0x00000570                _etext = .
 
-.data           0x00800100      0x24c load address 0x00000564
+.data           0x00800100      0x258 load address 0x00000570
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
- .data.d        0x00800100      0x23a dictionary.o
-                0x00800100                d
+ .data.dictionary
+                0x00800100      0x23a dictionary.o
+                0x00800100                dictionary
  .data.scrollingSpeed
-                0x0080033a        0x2 led_matrix_driver.o
+                0x0080033a        0x2 led_matrix_scroller.o
                 0x0080033a                scrollingSpeed
  *(.gnu.linkonce.d*)
  *(.rodata)
  .rodata        0x0080033c        0x6 led_matrix_driver.o
  *(.rodata*)
  .rodata.str1.1
-                0x00800342        0xa main.o
+                0x00800342       0x16 main.o
  *(.gnu.linkonce.r*)
-                0x0080034c                . = ALIGN (0x2)
-                0x0080034c                _edata = .
-                0x0080034c                PROVIDE (__data_end, .)
+                0x00800358                . = ALIGN (0x2)
+                0x00800358                _edata = .
+                0x00800358                PROVIDE (__data_end, .)
 
-.bss            0x0080034c      0x2c0
-                0x0080034c                PROVIDE (__bss_start, .)
+.bss            0x00800358      0x2c0
+                0x00800358                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.bufferCount
-                0x0080034c        0x2 led_matrix_driver.o
-                0x0080034c                bufferCount
+                0x00800358        0x2 led_matrix_scroller.o
+                0x00800358                bufferCount
  .bss.updateCount
-                0x0080034e        0x2 led_matrix_driver.o
-                0x0080034e                updateCount
+                0x0080035a        0x2 led_matrix_scroller.o
+                0x0080035a                updateCount
  *(COMMON)
- COMMON         0x00800350      0x2bc led_matrix_driver.o
-                0x00800350                buffer
-                0x0080060c                PROVIDE (__bss_end, .)
-                0x00000564                __data_load_start = LOADADDR (.data)
-                0x000007b0                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0080035c      0x2bc led_matrix_scroller.o
+                0x0080035c                buffer
+                0x00800618                PROVIDE (__bss_end, .)
+                0x00000570                __data_load_start = LOADADDR (.data)
+                0x000007c8                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0080060c        0x0
+.noinit         0x00800618        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x0080060c                _end = .
+                0x00800618                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -444,6 +452,7 @@ END GROUP
  .comment       0x00000000       0x30 dictionary.o
                                  0x31 (size before relaxing)
  .comment       0x00000030       0x31 led_matrix_driver.o
+ .comment       0x00000030       0x31 led_matrix_scroller.o
  .comment       0x00000030       0x31 main.o
 
 .note.gnu.avr.deviceinfo
@@ -466,60 +475,69 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0xb8
+.debug_aranges  0x00000000       0xd0
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x20 dictionary.o
  .debug_aranges
-                0x00000020       0x70 led_matrix_driver.o
+                0x00000020       0x40 led_matrix_driver.o
  .debug_aranges
-                0x00000090       0x28 main.o
+                0x00000060       0x48 led_matrix_scroller.o
+ .debug_aranges
+                0x000000a8       0x28 main.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1068
+.debug_info     0x00000000     0x11fc
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x780 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.3.300/gcc/dev/atmega128/avr51/crtatmega128.o
- .debug_info    0x00000780       0xf5 dictionary.o
- .debug_info    0x00000875      0x616 led_matrix_driver.o
- .debug_info    0x00000e8b      0x1dd main.o
+ .debug_info    0x00000780       0xf7 dictionary.o
+ .debug_info    0x00000877      0x2ba led_matrix_driver.o
+ .debug_info    0x00000b31      0x4d0 led_matrix_scroller.o
+ .debug_info    0x00001001      0x1fb main.o
 
-.debug_abbrev   0x00000000      0xae2
+.debug_abbrev   0x00000000      0xc0a
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x718 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.3.300/gcc/dev/atmega128/avr51/crtatmega128.o
  .debug_abbrev  0x00000718       0xbd dictionary.o
- .debug_abbrev  0x000007d5      0x1e1 led_matrix_driver.o
- .debug_abbrev  0x000009b6      0x12c main.o
+ .debug_abbrev  0x000007d5      0x153 led_matrix_driver.o
+ .debug_abbrev  0x00000928      0x1b6 led_matrix_scroller.o
+ .debug_abbrev  0x00000ade      0x12c main.o
 
-.debug_line     0x00000000      0x7f6
+.debug_line     0x00000000      0x854
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x169 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.3.300/gcc/dev/atmega128/avr51/crtatmega128.o
  .debug_line    0x00000169       0x9c dictionary.o
- .debug_line    0x00000205      0x485 led_matrix_driver.o
- .debug_line    0x0000068a      0x16c main.o
+ .debug_line    0x00000205      0x25a led_matrix_driver.o
+ .debug_line    0x0000045f      0x26a led_matrix_scroller.o
+ .debug_line    0x000006c9      0x18b main.o
 
-.debug_frame    0x00000000      0x234
+.debug_frame    0x00000000      0x238
  *(.debug_frame)
  .debug_frame   0x00000000       0x24 dictionary.o
- .debug_frame   0x00000024      0x1dc led_matrix_driver.o
- .debug_frame   0x00000200       0x34 main.o
+ .debug_frame   0x00000024       0xd4 led_matrix_driver.o
+ .debug_frame   0x000000f8      0x10c led_matrix_scroller.o
+ .debug_frame   0x00000204       0x34 main.o
 
-.debug_str      0x00000000      0x569
+.debug_str      0x00000000      0x5af
  *(.debug_str)
  .debug_str     0x00000000      0x27d C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.3.300/gcc/dev/atmega128/avr51/crtatmega128.o
- .debug_str     0x0000027d      0x14e dictionary.o
-                                0x153 (size before relaxing)
- .debug_str     0x000003cb      0x13d led_matrix_driver.o
-                                0x2b2 (size before relaxing)
- .debug_str     0x00000508       0x61 main.o
-                                0x227 (size before relaxing)
+ .debug_str     0x0000027d      0x160 dictionary.o
+                                0x16f (size before relaxing)
+ .debug_str     0x000003dd       0xb9 led_matrix_driver.o
+                                0x206 (size before relaxing)
+ .debug_str     0x00000496       0xb8 led_matrix_scroller.o
+                                0x249 (size before relaxing)
+ .debug_str     0x0000054e       0x61 main.o
+                                0x23e (size before relaxing)
 
-.debug_loc      0x00000000      0x6a6
+.debug_loc      0x00000000      0x692
  *(.debug_loc)
  .debug_loc     0x00000000       0x4c dictionary.o
- .debug_loc     0x0000004c      0x5f0 led_matrix_driver.o
- .debug_loc     0x0000063c       0x6a main.o
+ .debug_loc     0x0000004c      0x1c9 led_matrix_driver.o
+ .debug_loc     0x00000215      0x413 led_matrix_scroller.o
+ .debug_loc     0x00000628       0x6a main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -539,11 +557,12 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x158
+.debug_ranges   0x00000000      0x190
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x10 dictionary.o
- .debug_ranges  0x00000010      0x130 led_matrix_driver.o
- .debug_ranges  0x00000140       0x18 main.o
+ .debug_ranges  0x00000010       0x60 led_matrix_driver.o
+ .debug_ranges  0x00000070      0x108 led_matrix_scroller.o
+ .debug_ranges  0x00000178       0x18 main.o
 
 .debug_macro
  *(.debug_macro)

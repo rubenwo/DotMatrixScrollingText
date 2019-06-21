@@ -1,31 +1,22 @@
-
 /*
-* dotmatrix.h
+* led_matrix_driver.h
 *
-* Created: 28-3-2019 13:12:21
-*  Author: rickw
+* Created: 6/21/2019 12:05:01 PM
+*  Author: Ruben
 */
+
 #ifndef DOTMATRIX_H
 #define DOTMATRIX_H
 
 #define DOT_MATRIX_BASE_ADDR 0xE0
 
-#define SCROLLING_FAST		1
-#define SCROLLING_AVERAGE	4
-#define SCROLLING_SLOW		8
 
-void startDotmatrix(void);
-void stopDotmatrix(void);
-void writeToDotmatrix(unsigned char data);
-void dotmatrixInit(void);
 
-void clearDisplay(void);
-void clearDotmatrixBuffer(void);
-void selectLetters(char *word);
-void scrollRight(void);
-void scrollLeft(void);
+void start_led_matrix(void);
+void stop_led_matrix(void);
+void write_led_matrix(unsigned char data);
+void init_led_matrix(void);
 
-void setScrollingSpeed(int adjustedSpeed);
-int getScrollingSpeed(void);
+void clear_led_matrix_display(void);
 
 #endif

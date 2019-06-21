@@ -6,7 +6,7 @@
 */
 #include "dictionary.h"
 
-letter d[] = {
+character dictionary[] = {
 	{
 		'-', 5, {
 			0b11111111,
@@ -285,22 +285,22 @@ letter d[] = {
 };
 
 
-letter look_up(char c){
+character look_up_character(char c){
 	for(int i = 0; i < 29; i++)
 	{
-		if(d[i].character == c)
+		if(dictionary[i].letter == c)
 		{
-			return d[i];
+			return dictionary[i];
 		}
 		if (c == 60)
 		{
-			return d[28];
+			return dictionary[28];
 		}
 		if(c == 62)
 		{
-			return d[29];
+			return dictionary[29];
 		}
 	}
 	
-	return d[0];
+	return dictionary[0];
 }

@@ -6,5 +6,7 @@ dictionary.c
 
 led_matrix_driver.c
 
+led_matrix_scroller.c
+
 main.c
 

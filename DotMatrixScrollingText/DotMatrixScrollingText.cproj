@@ -134,6 +134,12 @@
     <Compile Include="led_matrix_driver.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="led_matrix_scroller.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="led_matrix_scroller.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>

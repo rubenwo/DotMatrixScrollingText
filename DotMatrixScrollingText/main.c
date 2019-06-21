@@ -1,10 +1,10 @@
-
 /*
 * main.c
 *
-* Created: 28-3-2019 13:12:21
-*  Author: rickw
+* Created: 6/21/2019 12:05:01 PM
+*  Author: Ruben
 */
+
 #define F_CPU 8000000UL
 
 #include <avr/io.h>
@@ -13,18 +13,17 @@
 #include <string.h>
 #include <avr/interrupt.h>
 
-#include "dictionary.h"
 #include "led_matrix_driver.h"
-
+#include "led_matrix_scroller.h"
 
 void wait(int ms);
 
 int main( void )
 {
-	dotmatrixInit();
-	clearDisplay();
+	init_led_matrix();
+	clear_led_matrix_display();
 	
-	selectLetters("FUCK DEZE");
+	selectLetters("FUCK DEZE KANKER SHIT");
 
 	while (1)
 	{

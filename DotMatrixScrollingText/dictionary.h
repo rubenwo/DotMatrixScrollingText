@@ -1,7 +1,7 @@
 /*
 * dictionary.h
 *
-* Created: 6/21/2019 12:05:09 PM
+* Created: 6/21/2019 12:05:01 PM
 *  Author: Ruben
 */
 
@@ -9,12 +9,12 @@
 #ifndef DICTIONARY_H_
 #define DICTIONARY_H_
 
-typedef struct letter{
-	char character;
+typedef struct character{
+	char letter;
 	int size;
-	int structure[8];
-}letter;
+	int matrix_structure[8];
+}character;
 
-letter look_up(char);
+character look_up_character(char);
 
 #endif /* DICTIONARY_H_ */
