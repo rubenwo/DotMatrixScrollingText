@@ -3,31 +3,31 @@ DotMatrixScrollingText.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         0000025a  00800100  0000053a  000005ce  2**0
+  0 .data         0000025c  00800100  00000544  000005d8  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         0000053a  00000000  00000000  00000094  2**1
+  1 .text         00000544  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          000002c0  0080035a  0080035a  00000828  2**0
+  2 .bss          000002c0  0080035c  0080035c  00000834  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000828  2**0
+  3 .comment      00000030  00000000  00000000  00000834  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000858  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000864  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000000d0  00000000  00000000  00000894  2**0
+  5 .debug_aranges 000000d0  00000000  00000000  000008a0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000010dc  00000000  00000000  00000964  2**0
+  6 .debug_info   000010f0  00000000  00000000  00000970  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000bc0  00000000  00000000  00001a40  2**0
+  7 .debug_abbrev 00000bd1  00000000  00000000  00001a60  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000008a6  00000000  00000000  00002600  2**0
+  8 .debug_line   000008b1  00000000  00000000  00002631  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000230  00000000  00000000  00002ea8  2**2
+  9 .debug_frame  00000230  00000000  00000000  00002ee4  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000005ab  00000000  00000000  000030d8  2**0
+ 10 .debug_str    000005cb  00000000  00000000  00003114  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000064c  00000000  00000000  00003683  2**0
+ 11 .debug_loc    0000064c  00000000  00000000  000036df  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000130  00000000  00000000  00003ccf  2**0
+ 12 .debug_ranges 00000130  00000000  00000000  00003d2b  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -116,20 +116,20 @@ Disassembly of section .text:
   98:	13 e0       	ldi	r17, 0x03	; 3
   9a:	a0 e0       	ldi	r26, 0x00	; 0
   9c:	b1 e0       	ldi	r27, 0x01	; 1
-  9e:	ea e3       	ldi	r30, 0x3A	; 58
+  9e:	e4 e4       	ldi	r30, 0x44	; 68
   a0:	f5 e0       	ldi	r31, 0x05	; 5
   a2:	00 e0       	ldi	r16, 0x00	; 0
   a4:	0b bf       	out	0x3b, r16	; 59
   a6:	02 c0       	rjmp	.+4      	; 0xac <__do_copy_data+0x14>
   a8:	07 90       	elpm	r0, Z+
   aa:	0d 92       	st	X+, r0
-  ac:	aa 35       	cpi	r26, 0x5A	; 90
+  ac:	ac 35       	cpi	r26, 0x5C	; 92
   ae:	b1 07       	cpc	r27, r17
   b0:	d9 f7       	brne	.-10     	; 0xa8 <__do_copy_data+0x10>
 
 000000b2 <__do_clear_bss>:
   b2:	26 e0       	ldi	r18, 0x06	; 6
-  b4:	aa e5       	ldi	r26, 0x5A	; 90
+  b4:	ac e5       	ldi	r26, 0x5C	; 92
   b6:	b3 e0       	ldi	r27, 0x03	; 3
   b8:	01 c0       	rjmp	.+2      	; 0xbc <.do_clear_bss_start>
 
@@ -137,11 +137,11 @@ Disassembly of section .text:
   ba:	1d 92       	st	X+, r1
 
 000000bc <.do_clear_bss_start>:
-  bc:	aa 31       	cpi	r26, 0x1A	; 26
+  bc:	ac 31       	cpi	r26, 0x1C	; 28
   be:	b2 07       	cpc	r27, r18
   c0:	e1 f7       	brne	.-8      	; 0xba <.do_clear_bss_loop>
   c2:	21 d2       	rcall	.+1090   	; 0x506 <main>
-  c4:	38 c2       	rjmp	.+1136   	; 0x536 <_exit>
+  c4:	3d c2       	rjmp	.+1146   	; 0x540 <_exit>
 
 000000c6 <__bad_interrupt>:
   c6:	9c cf       	rjmp	.-200    	; 0x0 <__vectors>
@@ -304,7 +304,7 @@ void init_led_matrix(void)
 	
 	int addr[] = { 0, 2, 8 };
  17a:	86 e0       	ldi	r24, 0x06	; 6
- 17c:	ec e3       	ldi	r30, 0x3C	; 60
+ 17c:	ee e3       	ldi	r30, 0x3E	; 62
  17e:	f3 e0       	ldi	r31, 0x03	; 3
  180:	de 01       	movw	r26, r28
  182:	11 96       	adiw	r26, 0x01	; 1
@@ -475,7 +475,7 @@ void clear_led_matrix_display(void)
  22e:	de b7       	in	r29, 0x3e	; 62
 	int addr[] = { 0, 2, 8 };
  230:	86 e0       	ldi	r24, 0x06	; 6
- 232:	ec e3       	ldi	r30, 0x3C	; 60
+ 232:	ee e3       	ldi	r30, 0x3E	; 62
  234:	f3 e0       	ldi	r31, 0x03	; 3
  236:	de 01       	movw	r26, r28
  238:	11 96       	adiw	r26, 0x01	; 1
@@ -582,14 +582,14 @@ void clear_led_matrix_display(void)
  2a8:	af 90       	pop	r10
  2aa:	08 95       	ret
 
-000002ac <selectLetters>:
+000002ac <scroller_set_text>:
  2ac:	cf 92       	push	r12
 	buffer[i] = 0;
 }
 
-void setScrollingSpeed(int s)
+void scroller_set_speed(int speed)
 {
-	scrollingSpeed = s;
+	scrollingSpeed = speed;
  2ae:	df 92       	push	r13
  2b0:	ef 92       	push	r14
  2b2:	ff 92       	push	r15
@@ -609,11 +609,11 @@ void setScrollingSpeed(int s)
  2ce:	7c 01       	movw	r14, r24
  2d0:	00 e0       	ldi	r16, 0x00	; 0
  2d2:	10 e0       	ldi	r17, 0x00	; 0
- 2d4:	6e c0       	rjmp	.+220    	; 0x3b2 <selectLetters+0x106>
+ 2d4:	6e c0       	rjmp	.+220    	; 0x3b2 <scroller_set_text+0x106>
  2d6:	f7 01       	movw	r30, r14
  2d8:	80 81       	ld	r24, Z
  2da:	90 e0       	ldi	r25, 0x00	; 0
- 2dc:	24 d1       	rcall	.+584    	; 0x526 <toupper>
+ 2dc:	29 d1       	rcall	.+594    	; 0x530 <toupper>
  2de:	f7 01       	movw	r30, r14
  2e0:	81 93       	st	Z+, r24
  2e2:	7f 01       	movw	r14, r30
@@ -623,20 +623,20 @@ void setScrollingSpeed(int s)
  2ea:	ee de       	rcall	.-548    	; 0xc8 <look_up_character>
  2ec:	89 81       	ldd	r24, Y+1	; 0x01
  2ee:	80 32       	cpi	r24, 0x20	; 32
- 2f0:	c9 f1       	breq	.+114    	; 0x364 <selectLetters+0xb8>
+ 2f0:	c9 f1       	breq	.+114    	; 0x364 <scroller_set_text+0xb8>
  2f2:	4a 81       	ldd	r20, Y+2	; 0x02
  2f4:	5b 81       	ldd	r21, Y+3	; 0x03
  2f6:	14 16       	cp	r1, r20
  2f8:	15 06       	cpc	r1, r21
- 2fa:	1c f5       	brge	.+70     	; 0x342 <selectLetters+0x96>
+ 2fa:	1c f5       	brge	.+70     	; 0x342 <scroller_set_text+0x96>
  2fc:	fe 01       	movw	r30, r28
  2fe:	34 96       	adiw	r30, 0x04	; 4
- 300:	60 91 5a 03 	lds	r22, 0x035A	; 0x80035a <__data_end>
- 304:	70 91 5b 03 	lds	r23, 0x035B	; 0x80035b <__data_end+0x1>
+ 300:	60 91 5c 03 	lds	r22, 0x035C	; 0x80035c <__data_end>
+ 304:	70 91 5d 03 	lds	r23, 0x035D	; 0x80035d <__data_end+0x1>
  308:	db 01       	movw	r26, r22
  30a:	aa 0f       	add	r26, r26
  30c:	bb 1f       	adc	r27, r27
- 30e:	a2 5a       	subi	r26, 0xA2	; 162
+ 30e:	a0 5a       	subi	r26, 0xA0	; 160
  310:	bc 4f       	sbci	r27, 0xFC	; 252
  312:	9a 01       	movw	r18, r20
  314:	22 0f       	add	r18, r18
@@ -655,75 +655,75 @@ void setScrollingSpeed(int s)
  32e:	9d 93       	st	X+, r25
  330:	e2 17       	cp	r30, r18
  332:	f3 07       	cpc	r31, r19
- 334:	c9 f7       	brne	.-14     	; 0x328 <selectLetters+0x7c>
+ 334:	c9 f7       	brne	.-14     	; 0x328 <scroller_set_text+0x7c>
  336:	46 0f       	add	r20, r22
  338:	57 1f       	adc	r21, r23
- 33a:	50 93 5b 03 	sts	0x035B, r21	; 0x80035b <__data_end+0x1>
- 33e:	40 93 5a 03 	sts	0x035A, r20	; 0x80035a <__data_end>
- 342:	80 91 5a 03 	lds	r24, 0x035A	; 0x80035a <__data_end>
- 346:	90 91 5b 03 	lds	r25, 0x035B	; 0x80035b <__data_end+0x1>
+ 33a:	50 93 5d 03 	sts	0x035D, r21	; 0x80035d <__data_end+0x1>
+ 33e:	40 93 5c 03 	sts	0x035C, r20	; 0x80035c <__data_end>
+ 342:	80 91 5c 03 	lds	r24, 0x035C	; 0x80035c <__data_end>
+ 346:	90 91 5d 03 	lds	r25, 0x035D	; 0x80035d <__data_end+0x1>
  34a:	fc 01       	movw	r30, r24
  34c:	ee 0f       	add	r30, r30
  34e:	ff 1f       	adc	r31, r31
- 350:	e2 5a       	subi	r30, 0xA2	; 162
+ 350:	e0 5a       	subi	r30, 0xA0	; 160
  352:	fc 4f       	sbci	r31, 0xFC	; 252
  354:	11 82       	std	Z+1, r1	; 0x01
  356:	10 82       	st	Z, r1
  358:	01 96       	adiw	r24, 0x01	; 1
- 35a:	90 93 5b 03 	sts	0x035B, r25	; 0x80035b <__data_end+0x1>
- 35e:	80 93 5a 03 	sts	0x035A, r24	; 0x80035a <__data_end>
- 362:	25 c0       	rjmp	.+74     	; 0x3ae <selectLetters+0x102>
- 364:	80 91 5a 03 	lds	r24, 0x035A	; 0x80035a <__data_end>
- 368:	90 91 5b 03 	lds	r25, 0x035B	; 0x80035b <__data_end+0x1>
+ 35a:	90 93 5d 03 	sts	0x035D, r25	; 0x80035d <__data_end+0x1>
+ 35e:	80 93 5c 03 	sts	0x035C, r24	; 0x80035c <__data_end>
+ 362:	25 c0       	rjmp	.+74     	; 0x3ae <scroller_set_text+0x102>
+ 364:	80 91 5c 03 	lds	r24, 0x035C	; 0x80035c <__data_end>
+ 368:	90 91 5d 03 	lds	r25, 0x035D	; 0x80035d <__data_end+0x1>
  36c:	fc 01       	movw	r30, r24
  36e:	ee 0f       	add	r30, r30
  370:	ff 1f       	adc	r31, r31
- 372:	e2 5a       	subi	r30, 0xA2	; 162
+ 372:	e0 5a       	subi	r30, 0xA0	; 160
  374:	fc 4f       	sbci	r31, 0xFC	; 252
  376:	11 82       	std	Z+1, r1	; 0x01
  378:	10 82       	st	Z, r1
  37a:	fc 01       	movw	r30, r24
  37c:	ee 0f       	add	r30, r30
  37e:	ff 1f       	adc	r31, r31
- 380:	e0 5a       	subi	r30, 0xA0	; 160
+ 380:	ee 59       	subi	r30, 0x9E	; 158
  382:	fc 4f       	sbci	r31, 0xFC	; 252
  384:	11 82       	std	Z+1, r1	; 0x01
  386:	10 82       	st	Z, r1
  388:	fc 01       	movw	r30, r24
  38a:	ee 0f       	add	r30, r30
  38c:	ff 1f       	adc	r31, r31
- 38e:	ee 59       	subi	r30, 0x9E	; 158
+ 38e:	ec 59       	subi	r30, 0x9C	; 156
  390:	fc 4f       	sbci	r31, 0xFC	; 252
  392:	11 82       	std	Z+1, r1	; 0x01
  394:	10 82       	st	Z, r1
  396:	fc 01       	movw	r30, r24
  398:	ee 0f       	add	r30, r30
  39a:	ff 1f       	adc	r31, r31
- 39c:	ec 59       	subi	r30, 0x9C	; 156
+ 39c:	ea 59       	subi	r30, 0x9A	; 154
  39e:	fc 4f       	sbci	r31, 0xFC	; 252
  3a0:	11 82       	std	Z+1, r1	; 0x01
  3a2:	10 82       	st	Z, r1
  3a4:	04 96       	adiw	r24, 0x04	; 4
- 3a6:	90 93 5b 03 	sts	0x035B, r25	; 0x80035b <__data_end+0x1>
- 3aa:	80 93 5a 03 	sts	0x035A, r24	; 0x80035a <__data_end>
+ 3a6:	90 93 5d 03 	sts	0x035D, r25	; 0x80035d <__data_end+0x1>
+ 3aa:	80 93 5c 03 	sts	0x035C, r24	; 0x80035c <__data_end>
  3ae:	0f 5f       	subi	r16, 0xFF	; 255
  3b0:	1f 4f       	sbci	r17, 0xFF	; 255
  3b2:	f6 01       	movw	r30, r12
  3b4:	01 90       	ld	r0, Z+
  3b6:	00 20       	and	r0, r0
- 3b8:	e9 f7       	brne	.-6      	; 0x3b4 <selectLetters+0x108>
+ 3b8:	e9 f7       	brne	.-6      	; 0x3b4 <scroller_set_text+0x108>
  3ba:	31 97       	sbiw	r30, 0x01	; 1
  3bc:	ec 19       	sub	r30, r12
  3be:	fd 09       	sbc	r31, r13
  3c0:	0e 17       	cp	r16, r30
  3c2:	1f 07       	cpc	r17, r31
- 3c4:	08 f4       	brcc	.+2      	; 0x3c8 <selectLetters+0x11c>
- 3c6:	87 cf       	rjmp	.-242    	; 0x2d6 <selectLetters+0x2a>
- 3c8:	80 91 5a 03 	lds	r24, 0x035A	; 0x80035a <__data_end>
- 3cc:	90 91 5b 03 	lds	r25, 0x035B	; 0x80035b <__data_end+0x1>
+ 3c4:	08 f4       	brcc	.+2      	; 0x3c8 <scroller_set_text+0x11c>
+ 3c6:	87 cf       	rjmp	.-242    	; 0x2d6 <scroller_set_text+0x2a>
+ 3c8:	80 91 5c 03 	lds	r24, 0x035C	; 0x80035c <__data_end>
+ 3cc:	90 91 5d 03 	lds	r25, 0x035D	; 0x80035d <__data_end+0x1>
  3d0:	47 96       	adiw	r24, 0x17	; 23
- 3d2:	90 93 5d 03 	sts	0x035D, r25	; 0x80035d <updateCount+0x1>
- 3d6:	80 93 5c 03 	sts	0x035C, r24	; 0x80035c <updateCount>
+ 3d2:	90 93 5f 03 	sts	0x035F, r25	; 0x80035f <updateCount+0x1>
+ 3d6:	80 93 5e 03 	sts	0x035E, r24	; 0x80035e <updateCount>
  3da:	63 96       	adiw	r28, 0x13	; 19
  3dc:	0f b6       	in	r0, 0x3f	; 63
  3de:	f8 94       	cli
@@ -740,7 +740,7 @@ void setScrollingSpeed(int s)
  3f4:	cf 90       	pop	r12
  3f6:	08 95       	ret
 
-000003f8 <scrollLeft>:
+000003f8 <scroller_scroll_left>:
  3f8:	bf 92       	push	r11
  3fa:	cf 92       	push	r12
  3fc:	df 92       	push	r13
@@ -782,13 +782,13 @@ void setScrollingSpeed(int s)
  444:	d1 2c       	mov	r13, r1
  446:	8d 2d       	mov	r24, r13
  448:	79 de       	rcall	.-782    	; 0x13c <write_led_matrix>
- 44a:	80 91 5c 03 	lds	r24, 0x035C	; 0x80035c <updateCount>
- 44e:	90 91 5d 03 	lds	r25, 0x035D	; 0x80035d <updateCount+0x1>
+ 44a:	80 91 5e 03 	lds	r24, 0x035E	; 0x80035e <updateCount>
+ 44e:	90 91 5f 03 	lds	r25, 0x035F	; 0x80035f <updateCount+0x1>
  452:	9e 01       	movw	r18, r28
  454:	28 1b       	sub	r18, r24
  456:	39 0b       	sbc	r19, r25
- 458:	80 91 5a 03 	lds	r24, 0x035A	; 0x80035a <__data_end>
- 45c:	90 91 5b 03 	lds	r25, 0x035B	; 0x80035b <__data_end+0x1>
+ 458:	80 91 5c 03 	lds	r24, 0x035C	; 0x80035c <__data_end>
+ 45c:	90 91 5d 03 	lds	r25, 0x035D	; 0x80035d <__data_end+0x1>
  460:	82 0f       	add	r24, r18
  462:	93 1f       	adc	r25, r19
  464:	01 96       	adiw	r24, 0x01	; 1
@@ -798,7 +798,7 @@ void setScrollingSpeed(int s)
  46c:	88 0f       	add	r24, r24
  46e:	99 1f       	adc	r25, r25
  470:	fc 01       	movw	r30, r24
- 472:	e2 5a       	subi	r30, 0xA2	; 162
+ 472:	e0 5a       	subi	r30, 0xA0	; 160
  474:	fc 4f       	sbci	r31, 0xFC	; 252
  476:	80 81       	ld	r24, Z
  478:	61 de       	rcall	.-830    	; 0x13c <write_led_matrix>
@@ -819,19 +819,19 @@ void setScrollingSpeed(int s)
  496:	f1 04       	cpc	r15, r1
  498:	09 f0       	breq	.+2      	; 0x49c <__LOCK_REGION_LENGTH__+0x9c>
  49a:	c1 cf       	rjmp	.-126    	; 0x41e <__LOCK_REGION_LENGTH__+0x1e>
- 49c:	80 91 5c 03 	lds	r24, 0x035C	; 0x80035c <updateCount>
- 4a0:	90 91 5d 03 	lds	r25, 0x035D	; 0x80035d <updateCount+0x1>
+ 49c:	80 91 5e 03 	lds	r24, 0x035E	; 0x80035e <updateCount>
+ 4a0:	90 91 5f 03 	lds	r25, 0x035F	; 0x80035f <updateCount+0x1>
  4a4:	01 97       	sbiw	r24, 0x01	; 1
- 4a6:	90 93 5d 03 	sts	0x035D, r25	; 0x80035d <updateCount+0x1>
- 4aa:	80 93 5c 03 	sts	0x035C, r24	; 0x80035c <updateCount>
+ 4a6:	90 93 5f 03 	sts	0x035F, r25	; 0x80035f <updateCount+0x1>
+ 4aa:	80 93 5e 03 	sts	0x035E, r24	; 0x80035e <updateCount>
  4ae:	18 16       	cp	r1, r24
  4b0:	19 06       	cpc	r1, r25
  4b2:	4c f0       	brlt	.+18     	; 0x4c6 <__LOCK_REGION_LENGTH__+0xc6>
- 4b4:	80 91 5a 03 	lds	r24, 0x035A	; 0x80035a <__data_end>
- 4b8:	90 91 5b 03 	lds	r25, 0x035B	; 0x80035b <__data_end+0x1>
+ 4b4:	80 91 5c 03 	lds	r24, 0x035C	; 0x80035c <__data_end>
+ 4b8:	90 91 5d 03 	lds	r25, 0x035D	; 0x80035d <__data_end+0x1>
  4bc:	47 96       	adiw	r24, 0x17	; 23
- 4be:	90 93 5d 03 	sts	0x035D, r25	; 0x80035d <updateCount+0x1>
- 4c2:	80 93 5c 03 	sts	0x035C, r24	; 0x80035c <updateCount>
+ 4be:	90 93 5f 03 	sts	0x035F, r25	; 0x80035f <updateCount+0x1>
+ 4c2:	80 93 5e 03 	sts	0x035E, r24	; 0x80035e <updateCount>
  4c6:	df 91       	pop	r29
  4c8:	cf 91       	pop	r28
  4ca:	1f 91       	pop	r17
@@ -843,10 +843,10 @@ void setScrollingSpeed(int s)
  4d6:	bf 90       	pop	r11
  4d8:	08 95       	ret
 
-000004da <getScrollingSpeed>:
+000004da <scroller_get_speed>:
 }
 
-int getScrollingSpeed(void)
+int scroller_get_speed(void)
 {
 	return scrollingSpeed;
 }
@@ -886,58 +886,62 @@ void wait(int ms)
  504:	08 95       	ret
 
 00000506 <main>:
-
-void wait(int ms);
-
-int main( void )
-{
+	// 	EIMSK |= 0b00010001;
+	//
+	// 	sei();
+	
+	
 	init_led_matrix();
  506:	25 de       	rcall	.-950    	; 0x152 <init_led_matrix>
 	clear_led_matrix_display();
  508:	84 de       	rcall	.-760    	; 0x212 <clear_led_matrix_display>
- 50a:	82 e4       	ldi	r24, 0x42	; 66
+ 50a:	84 e4       	ldi	r24, 0x44	; 68
 	
-	selectLetters("Nerds are the new cool");
+	scroller_set_text("Nerds are the new cool");
  50c:	93 e0       	ldi	r25, 0x03	; 3
- 50e:	ce de       	rcall	.-612    	; 0x2ac <selectLetters>
+ 50e:	ce de       	rcall	.-612    	; 0x2ac <scroller_set_text>
+ 510:	cf ef       	ldi	r28, 0xFF	; 255
 
 	while (1)
 	{
-		scrollLeft();
-		
-		wait(getScrollingSpeed()*100);
- 510:	c4 e6       	ldi	r28, 0x64	; 100
+		if(interrupted == 0){
+			interrupted = -1;
+ 512:	df ef       	ldi	r29, 0xFF	; 255
+ 514:	80 91 3c 03 	lds	r24, 0x033C	; 0x80033c <interrupted>
 	
-	selectLetters("Nerds are the new cool");
+	scroller_set_text("Nerds are the new cool");
 
 	while (1)
 	{
-		scrollLeft();
- 512:	72 df       	rcall	.-284    	; 0x3f8 <scrollLeft>
- 514:	e2 df       	rcall	.-60     	; 0x4da <getScrollingSpeed>
+		if(interrupted == 0){
+ 518:	90 91 3d 03 	lds	r25, 0x033D	; 0x80033d <interrupted+0x1>
+ 51c:	89 2b       	or	r24, r25
+ 51e:	21 f4       	brne	.+8      	; 0x528 <main+0x22>
+ 520:	d0 93 3d 03 	sts	0x033D, r29	; 0x80033d <interrupted+0x1>
+			interrupted = -1;
+ 524:	c0 93 3c 03 	sts	0x033C, r28	; 0x80033c <interrupted>
+		}
+		scroller_scroll_left();
+ 528:	67 df       	rcall	.-306    	; 0x3f8 <scroller_scroll_left>
 		
-		wait(getScrollingSpeed()*100);
- 516:	9c 01       	movw	r18, r24
- 518:	c2 9f       	mul	r28, r18
- 51a:	c0 01       	movw	r24, r0
- 51c:	c3 9f       	mul	r28, r19
- 51e:	90 0d       	add	r25, r0
- 520:	11 24       	eor	r1, r1
- 522:	e0 df       	rcall	.-64     	; 0x4e4 <wait>
- 524:	f6 cf       	rjmp	.-20     	; 0x512 <main+0xc>
+		wait(scroller_get_speed());
+ 52a:	d7 df       	rcall	.-82     	; 0x4da <scroller_get_speed>
+ 52c:	db df       	rcall	.-74     	; 0x4e4 <wait>
+ 52e:	f2 cf       	rjmp	.-28     	; 0x514 <main+0xe>
 
-00000526 <toupper>:
- 526:	91 11       	cpse	r25, r1
- 528:	08 95       	ret
- 52a:	81 56       	subi	r24, 0x61	; 97
- 52c:	8a 51       	subi	r24, 0x1A	; 26
- 52e:	08 f4       	brcc	.+2      	; 0x532 <toupper+0xc>
- 530:	80 52       	subi	r24, 0x20	; 32
- 532:	85 58       	subi	r24, 0x85	; 133
- 534:	08 95       	ret
+00000530 <toupper>:
+ 530:	91 11       	cpse	r25, r1
+	}
+ 532:	08 95       	ret
+ 534:	81 56       	subi	r24, 0x61	; 97
+ 536:	8a 51       	subi	r24, 0x1A	; 26
+ 538:	08 f4       	brcc	.+2      	; 0x53c <toupper+0xc>
+ 53a:	80 52       	subi	r24, 0x20	; 32
+ 53c:	85 58       	subi	r24, 0x85	; 133
+ 53e:	08 95       	ret
 
-00000536 <_exit>:
- 536:	f8 94       	cli
+00000540 <_exit>:
+ 540:	f8 94       	cli
 
-00000538 <__stop_program>:
- 538:	ff cf       	rjmp	.-2      	; 0x538 <__stop_program>
+00000542 <__stop_program>:
+ 542:	ff cf       	rjmp	.-2      	; 0x542 <__stop_program>

@@ -5,15 +5,15 @@
 *  Author: Ruben
 */
 
-
 #ifndef DICTIONARY_H_
 #define DICTIONARY_H_
 
-typedef struct character{
+typedef struct character
+{
 	char letter;
 	int size;
 	int matrix_structure[8];
-}character;
+} character;
 
 character look_up_character(char);
 

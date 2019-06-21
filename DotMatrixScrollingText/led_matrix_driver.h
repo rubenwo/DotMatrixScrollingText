@@ -10,8 +10,6 @@
 
 #define DOT_MATRIX_BASE_ADDR 0xE0
 
-
-
 void start_led_matrix(void);
 void stop_led_matrix(void);
 void write_led_matrix(unsigned char data);

@@ -14,62 +14,68 @@
 int buffer[350];
 int updateCount = 0;
 int bufferCount = 0;
-int scrollingSpeed = SCROLLING_FAST;
+int scrollingSpeed = SCROLL_MODE_FAST;
 
-void selectLetters(char *word)
+void scroller_set_text(char *word)
 {
 	for (int i = 0; i < strlen(word); i++)
 	{
 		word[i] = toupper(word[i]);
 		character c = look_up_character(word[i]);
-		if(c.letter != ' ')
+		if (c.letter != ' ')
 		{
-			for(int j = 0; j < c.size; j++)
+			for (int j = 0; j < c.size; j++)
 			{
 				buffer[bufferCount] = c.matrix_structure[j];
 				bufferCount++;
 			}
-			
+
 			buffer[bufferCount] = 0b00000000;
 			bufferCount++;
 		}
 		else
 		{
-			for(int j = 0; j<4; j++)
+			for (int j = 0; j < 4; j++)
 			{
 				buffer[bufferCount] = 0b00000000;
 				bufferCount++;
 			}
 		}
 	}
-	
+
 	updateCount = bufferCount + 23;
 }
 
-void scrollRight(void)
+void scroller_scroll_right(void)
 {
 	int i = 0;
-	for (int j = 0; j <= 2; j ++)
+	for (int j = 0; j <= 2; j++)
 	{
 		start_led_matrix();
 		switch (j)
 		{
-			case 0: write_led_matrix(0xE0); break;
-			case 1: write_led_matrix(0xE2); break;
-			case 2: write_led_matrix(0xE8); break;
+		case 0:
+			write_led_matrix(0xE0);
+			break;
+		case 1:
+			write_led_matrix(0xE2);
+			break;
+		case 2:
+			write_led_matrix(0xE8);
+			break;
 		}
-		
+
 		for (int k = 0; k <= 14; k += 2)
 		{
 			write_led_matrix(k);
-			write_led_matrix(buffer[(i - updateCount + bufferCount + 1 >= 0)? i - updateCount + bufferCount + 1 : 299]);
-			
+			write_led_matrix(buffer[(i - updateCount + bufferCount + 1 >= 0) ? i - updateCount + bufferCount + 1 : 299]);
+
 			i++;
 		}
-		
+
 		stop_led_matrix();
 	}
-	
+
 	updateCount++;
 	if (updateCount > bufferCount + 23)
 	{
@@ -77,30 +83,36 @@ void scrollRight(void)
 	}
 }
 
-void scrollLeft(void)
+void scroller_scroll_left(void)
 {
 	int i = 0;
-	for (int j = 0; j <= 2; j ++)
+	for (int j = 0; j <= 2; j++)
 	{
 		start_led_matrix();
 		switch (j)
 		{
-			case 0: write_led_matrix(0xE0); break;
-			case 1: write_led_matrix(0xE2); break;
-			case 2: write_led_matrix(0xE8); break;
+		case 0:
+			write_led_matrix(0xE0);
+			break;
+		case 1:
+			write_led_matrix(0xE2);
+			break;
+		case 2:
+			write_led_matrix(0xE8);
+			break;
 		}
-		
+
 		for (int k = 0; k <= 14; k += 2)
 		{
 			write_led_matrix(k);
-			write_led_matrix(buffer[(i - updateCount + bufferCount + 1 >= 0)? i - updateCount + bufferCount + 1 : 299]);
-			
+			write_led_matrix(buffer[(i - updateCount + bufferCount + 1 >= 0) ? i - updateCount + bufferCount + 1 : 299]);
+
 			i++;
 		}
-		
+
 		stop_led_matrix();
 	}
-	
+
 	updateCount--;
 	if (updateCount <= 0)
 	{
@@ -108,19 +120,18 @@ void scrollLeft(void)
 	}
 }
 
-void clearDotmatrixBuffer(void)
+void scroller_clear_buffer(void)
 {
 	for (int i = 0; i < 300; i++)
-	buffer[i] = 0;
+		buffer[i] = 0;
 }
 
-void setScrollingSpeed(int s)
+void scroller_set_speed(int speed)
 {
-	scrollingSpeed = s;
+	scrollingSpeed = speed;
 }
 
-int getScrollingSpeed(void)
+int scroller_get_speed(void)
 {
 	return scrollingSpeed;
 }
-
