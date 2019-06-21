@@ -68,14 +68,10 @@ int main(void)
 	init_led_matrix();
 	clear_led_matrix_display();
 
-	scroller_set_text("Nerds are the new cool");
+	scroller_set_text("Nerds are the new cool!");
 
 	while (1)
 	{
-		if (interrupted == 0)
-		{
-			interrupted = -1;
-		}
 		scroller_scroll_left();
 
 		wait(scroller_get_speed());

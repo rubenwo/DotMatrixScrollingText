@@ -3,31 +3,31 @@ DotMatrixScrollingText.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         0000025c  00800100  00000544  000005d8  2**0
+  0 .data         00000242  00800100  000003b2  00000446  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000544  00000000  00000000  00000094  2**1
+  1 .text         000003b2  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          000002c0  0080035c  0080035c  00000834  2**0
+  2 .bss          000002c0  00800342  00800342  00000688  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000834  2**0
+  3 .comment      00000030  00000000  00000000  00000688  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000864  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000006b8  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000000d0  00000000  00000000  000008a0  2**0
+  5 .debug_aranges 000000d0  00000000  00000000  000006f4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000010f0  00000000  00000000  00000970  2**0
+  6 .debug_info   00001011  00000000  00000000  000007c4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000bd1  00000000  00000000  00001a60  2**0
+  7 .debug_abbrev 00000ba0  00000000  00000000  000017d5  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000008b1  00000000  00000000  00002631  2**0
+  8 .debug_line   000007cd  00000000  00000000  00002375  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000230  00000000  00000000  00002ee4  2**2
+  9 .debug_frame  000001bc  00000000  00000000  00002b44  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000005cb  00000000  00000000  00003114  2**0
+ 10 .debug_str    000005c6  00000000  00000000  00002d00  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000064c  00000000  00000000  000036df  2**0
+ 11 .debug_loc    000003d1  00000000  00000000  000032c6  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000130  00000000  00000000  00003d2b  2**0
+ 12 .debug_ranges 000000a8  00000000  00000000  00003697  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -116,20 +116,20 @@ Disassembly of section .text:
   98:	13 e0       	ldi	r17, 0x03	; 3
   9a:	a0 e0       	ldi	r26, 0x00	; 0
   9c:	b1 e0       	ldi	r27, 0x01	; 1
-  9e:	e4 e4       	ldi	r30, 0x44	; 68
-  a0:	f5 e0       	ldi	r31, 0x05	; 5
+  9e:	e2 eb       	ldi	r30, 0xB2	; 178
+  a0:	f3 e0       	ldi	r31, 0x03	; 3
   a2:	00 e0       	ldi	r16, 0x00	; 0
   a4:	0b bf       	out	0x3b, r16	; 59
   a6:	02 c0       	rjmp	.+4      	; 0xac <__do_copy_data+0x14>
   a8:	07 90       	elpm	r0, Z+
   aa:	0d 92       	st	X+, r0
-  ac:	ac 35       	cpi	r26, 0x5C	; 92
+  ac:	a2 34       	cpi	r26, 0x42	; 66
   ae:	b1 07       	cpc	r27, r17
   b0:	d9 f7       	brne	.-10     	; 0xa8 <__do_copy_data+0x10>
 
 000000b2 <__do_clear_bss>:
   b2:	26 e0       	ldi	r18, 0x06	; 6
-  b4:	ac e5       	ldi	r26, 0x5C	; 92
+  b4:	a2 e4       	ldi	r26, 0x42	; 66
   b6:	b3 e0       	ldi	r27, 0x03	; 3
   b8:	01 c0       	rjmp	.+2      	; 0xbc <.do_clear_bss_start>
 
@@ -137,24 +137,24 @@ Disassembly of section .text:
   ba:	1d 92       	st	X+, r1
 
 000000bc <.do_clear_bss_start>:
-  bc:	ac 31       	cpi	r26, 0x1C	; 28
+  bc:	a2 30       	cpi	r26, 0x02	; 2
   be:	b2 07       	cpc	r27, r18
   c0:	e1 f7       	brne	.-8      	; 0xba <.do_clear_bss_loop>
-  c2:	21 d2       	rcall	.+1090   	; 0x506 <main>
-  c4:	3d c2       	rjmp	.+1146   	; 0x540 <_exit>
+  c2:	64 d1       	rcall	.+712    	; 0x38c <main>
+  c4:	74 c1       	rjmp	.+744    	; 0x3ae <_exit>
 
 000000c6 <__bad_interrupt>:
   c6:	9c cf       	rjmp	.-200    	; 0x0 <__vectors>
 
 000000c8 <look_up_character>:
+			0b11100000
 		}
 	}
 };
 
-
 character look_up_character(char c){
   c8:	ac 01       	movw	r20, r24
-	for(int i = 0; i < 29; i++)
+	for(int i = 0; i < DICTIONARY_SIZE; i++)
 	{
 		if(dictionary[i].letter == c)
   ca:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
@@ -162,12 +162,12 @@ character look_up_character(char c){
   d0:	41 f0       	breq	.+16     	; 0xe2 <look_up_character+0x1a>
   d2:	e3 e1       	ldi	r30, 0x13	; 19
   d4:	f1 e0       	ldi	r31, 0x01	; 1
+		}
 	}
 };
 
-
 character look_up_character(char c){
-	for(int i = 0; i < 29; i++)
+	for(int i = 0; i < DICTIONARY_SIZE; i++)
   d6:	21 e0       	ldi	r18, 0x01	; 1
   d8:	30 e0       	ldi	r19, 0x00	; 0
 	{
@@ -176,12 +176,12 @@ character look_up_character(char c){
   dc:	96 13       	cpse	r25, r22
   de:	11 c0       	rjmp	.+34     	; 0x102 <look_up_character+0x3a>
   e0:	02 c0       	rjmp	.+4      	; 0xe6 <look_up_character+0x1e>
+		}
 	}
 };
 
-
 character look_up_character(char c){
-	for(int i = 0; i < 29; i++)
+	for(int i = 0; i < DICTIONARY_SIZE; i++)
   e2:	20 e0       	ldi	r18, 0x00	; 0
   e4:	30 e0       	ldi	r19, 0x00	; 0
 	{
@@ -202,21 +202,21 @@ character look_up_character(char c){
   fc:	8a 95       	dec	r24
   fe:	e1 f7       	brne	.-8      	; 0xf8 <look_up_character+0x30>
  100:	0e c0       	rjmp	.+28     	; 0x11e <look_up_character+0x56>
+		}
 	}
 };
 
-
 character look_up_character(char c){
-	for(int i = 0; i < 29; i++)
+	for(int i = 0; i < DICTIONARY_SIZE; i++)
  102:	2f 5f       	subi	r18, 0xFF	; 255
  104:	3f 4f       	sbci	r19, 0xFF	; 255
  106:	73 96       	adiw	r30, 0x13	; 19
  108:	2d 31       	cpi	r18, 0x1D	; 29
  10a:	31 05       	cpc	r19, r1
  10c:	31 f7       	brne	.-52     	; 0xda <look_up_character+0x12>
+		{
 			return dictionary[i];
 		}
-		
 	}
 	
 	return dictionary[0];
@@ -232,26 +232,29 @@ character look_up_character(char c){
  120:	08 95       	ret
 
 00000122 <start_led_matrix>:
-
-#include "led_matrix_driver.h"
-
-void start_led_matrix(void)
+outputs:	
+notes:			
+Version :    	DMK, Initial code
+*******************************************************************/
 {
 	TWCR = (0x80 | 0x20 | 0x04);
  122:	84 ea       	ldi	r24, 0xA4	; 164
  124:	80 93 74 00 	sts	0x0074, r24	; 0x800074 <__TEXT_REGION_LENGTH__+0x7e0074>
-	while( 0x00 == (TWCR & 0x80) );
+	while (0x00 == (TWCR & 0x80))
  128:	e4 e7       	ldi	r30, 0x74	; 116
  12a:	f0 e0       	ldi	r31, 0x00	; 0
  12c:	80 81       	ld	r24, Z
  12e:	88 23       	and	r24, r24
  130:	ec f7       	brge	.-6      	; 0x12c <start_led_matrix+0xa>
+		;
 }
  132:	08 95       	ret
 
 00000134 <stop_led_matrix>:
-
-void stop_led_matrix(void)
+outputs:	
+notes:			
+Version :    	DMK, Initial code
+*******************************************************************/
 {
 	TWCR = (0x80 | 0x10 | 0x04);
  134:	84 e9       	ldi	r24, 0x94	; 148
@@ -259,21 +262,23 @@ void stop_led_matrix(void)
  13a:	08 95       	ret
 
 0000013c <write_led_matrix>:
-}
-
-void write_led_matrix(unsigned char data)
+outputs:	
+notes:			
+Version :    	DMK, Initial code
+*******************************************************************/
 {
 	TWDR = data;
  13c:	80 93 73 00 	sts	0x0073, r24	; 0x800073 <__TEXT_REGION_LENGTH__+0x7e0073>
 	TWCR = (0x80 | 0x04);
  140:	84 e8       	ldi	r24, 0x84	; 132
  142:	80 93 74 00 	sts	0x0074, r24	; 0x800074 <__TEXT_REGION_LENGTH__+0x7e0074>
-	while (0 == (TWCR & 0x80));
+	while (0 == (TWCR & 0x80))
  146:	e4 e7       	ldi	r30, 0x74	; 116
  148:	f0 e0       	ldi	r31, 0x00	; 0
  14a:	80 81       	ld	r24, Z
  14c:	88 23       	and	r24, r24
  14e:	ec f7       	brge	.-6      	; 0x14a <write_led_matrix+0xe>
+		;
 }
  150:	08 95       	ret
 
@@ -281,667 +286,432 @@ void write_led_matrix(unsigned char data)
 
 void init_led_matrix(void)
 {
- 152:	af 92       	push	r10
- 154:	bf 92       	push	r11
- 156:	cf 92       	push	r12
- 158:	df 92       	push	r13
- 15a:	ef 92       	push	r14
- 15c:	ff 92       	push	r15
- 15e:	0f 93       	push	r16
- 160:	1f 93       	push	r17
- 162:	cf 93       	push	r28
- 164:	df 93       	push	r29
- 166:	00 d0       	rcall	.+0      	; 0x168 <init_led_matrix+0x16>
- 168:	00 d0       	rcall	.+0      	; 0x16a <init_led_matrix+0x18>
- 16a:	00 d0       	rcall	.+0      	; 0x16c <init_led_matrix+0x1a>
- 16c:	cd b7       	in	r28, 0x3d	; 61
- 16e:	de b7       	in	r29, 0x3e	; 62
+ 152:	1f 93       	push	r17
+ 154:	cf 93       	push	r28
+ 156:	df 93       	push	r29
 	TWSR = 0;
- 170:	10 92 71 00 	sts	0x0071, r1	; 0x800071 <__TEXT_REGION_LENGTH__+0x7e0071>
-	TWBR = 32;
- 174:	80 e2       	ldi	r24, 0x20	; 32
- 176:	80 93 70 00 	sts	0x0070, r24	; 0x800070 <__TEXT_REGION_LENGTH__+0x7e0070>
-	
-	int addr[] = { 0, 2, 8 };
- 17a:	86 e0       	ldi	r24, 0x06	; 6
- 17c:	ee e3       	ldi	r30, 0x3E	; 62
- 17e:	f3 e0       	ldi	r31, 0x03	; 3
- 180:	de 01       	movw	r26, r28
- 182:	11 96       	adiw	r26, 0x01	; 1
- 184:	01 90       	ld	r0, Z+
- 186:	0d 92       	st	X+, r0
- 188:	8a 95       	dec	r24
- 18a:	e1 f7       	brne	.-8      	; 0x184 <init_led_matrix+0x32>
- 18c:	ce 01       	movw	r24, r28
- 18e:	01 96       	adiw	r24, 0x01	; 1
- 190:	7c 01       	movw	r14, r24
- 192:	5e 01       	movw	r10, r28
- 194:	97 e0       	ldi	r25, 0x07	; 7
- 196:	a9 0e       	add	r10, r25
- 198:	b1 1c       	adc	r11, r1
-	while( 0x00 == (TWCR & 0x80) );
-}
+ 158:	10 92 71 00 	sts	0x0071, r1	; 0x800071 <__TEXT_REGION_LENGTH__+0x7e0071>
+	TWBR = 32; // TWI clock set to 100kHz, prescaler = 0
+ 15c:	80 e2       	ldi	r24, 0x20	; 32
+ 15e:	80 93 70 00 	sts	0x0070, r24	; 0x800070 <__TEXT_REGION_LENGTH__+0x7e0070>
 
-void stop_led_matrix(void)
+	start_led_matrix();
+ 162:	df df       	rcall	.-66     	; 0x122 <start_led_matrix>
+	write_led_matrix(DOT_MATRIX_BASE_ADDR); //Display I2C addres + R/W bit
+ 164:	80 ee       	ldi	r24, 0xE0	; 224
+ 166:	ea df       	rcall	.-44     	; 0x13c <write_led_matrix>
+	write_led_matrix(0x21);					//Internal osc on (page 10 HT16K33)
+ 168:	81 e2       	ldi	r24, 0x21	; 33
+ 16a:	e8 df       	rcall	.-48     	; 0x13c <write_led_matrix>
+ 16c:	c4 e7       	ldi	r28, 0x74	; 116
+outputs:	
+notes:			
+Version :    	DMK, Initial code
+*******************************************************************/
 {
 	TWCR = (0x80 | 0x10 | 0x04);
- 19a:	0f 2e       	mov	r0, r31
- 19c:	f4 e7       	ldi	r31, 0x74	; 116
- 19e:	cf 2e       	mov	r12, r31
- 1a0:	d1 2c       	mov	r13, r1
- 1a2:	f0 2d       	mov	r31, r0
- 1a4:	04 e9       	ldi	r16, 0x94	; 148
-	TWBR = 32;
-	
-	int addr[] = { 0, 2, 8 };
-	for (int i = 0; i < 3; i++)
+ 16e:	d0 e0       	ldi	r29, 0x00	; 0
+ 170:	14 e9       	ldi	r17, 0x94	; 148
+ 172:	18 83       	st	Y, r17
+	start_led_matrix();
+	write_led_matrix(DOT_MATRIX_BASE_ADDR); //Display I2C addres + R/W bit
+	write_led_matrix(0x21);					//Internal osc on (page 10 HT16K33)
+	stop_led_matrix();
+
+	start_led_matrix();
+ 174:	d6 df       	rcall	.-84     	; 0x122 <start_led_matrix>
+	write_led_matrix(DOT_MATRIX_BASE_ADDR); //Display I2C addres + R/W bit
+ 176:	80 ee       	ldi	r24, 0xE0	; 224
+ 178:	e1 df       	rcall	.-62     	; 0x13c <write_led_matrix>
+	write_led_matrix(0xA0);					//HT16K33 pins all output
+ 17a:	80 ea       	ldi	r24, 0xA0	; 160
+ 17c:	df df       	rcall	.-66     	; 0x13c <write_led_matrix>
+outputs:	
+notes:			
+Version :    	DMK, Initial code
+*******************************************************************/
+{
+	TWCR = (0x80 | 0x10 | 0x04);
+ 17e:	18 83       	st	Y, r17
+	start_led_matrix();
+	write_led_matrix(DOT_MATRIX_BASE_ADDR); //Display I2C addres + R/W bit
+	write_led_matrix(0xA0);					//HT16K33 pins all output
+	stop_led_matrix();
+
+	start_led_matrix();
+ 180:	d0 df       	rcall	.-96     	; 0x122 <start_led_matrix>
+	write_led_matrix(DOT_MATRIX_BASE_ADDR); //Display I2C addres + R/W bit
+ 182:	80 ee       	ldi	r24, 0xE0	; 224
+ 184:	db df       	rcall	.-74     	; 0x13c <write_led_matrix>
+	write_led_matrix(0xE7);					//Display Dimming 4/16 duty cycle
+ 186:	87 ee       	ldi	r24, 0xE7	; 231
+ 188:	d9 df       	rcall	.-78     	; 0x13c <write_led_matrix>
+ 18a:	18 83       	st	Y, r17
+outputs:	
+notes:			
+Version :    	DMK, Initial code
+*******************************************************************/
+{
+	TWCR = (0x80 | 0x10 | 0x04);
+ 18c:	ca df       	rcall	.-108    	; 0x122 <start_led_matrix>
+	start_led_matrix();
+	write_led_matrix(DOT_MATRIX_BASE_ADDR); //Display I2C addres + R/W bit
+	write_led_matrix(0xE7);					//Display Dimming 4/16 duty cycle
+	stop_led_matrix();
+
+	start_led_matrix();
+ 18e:	80 ee       	ldi	r24, 0xE0	; 224
+ 190:	d5 df       	rcall	.-86     	; 0x13c <write_led_matrix>
+	write_led_matrix(DOT_MATRIX_BASE_ADDR); //Display I2C addres + R/W bit
+ 192:	81 e8       	ldi	r24, 0x81	; 129
+ 194:	d3 df       	rcall	.-90     	; 0x13c <write_led_matrix>
+ 196:	18 83       	st	Y, r17
+	write_led_matrix(0x81);					//Display OFF - Blink On
+ 198:	df 91       	pop	r29
+ 19a:	cf 91       	pop	r28
+ 19c:	1f 91       	pop	r17
+outputs:	
+notes:			
+Version :    	DMK, Initial code
+*******************************************************************/
+{
+	TWCR = (0x80 | 0x10 | 0x04);
+ 19e:	08 95       	ret
+
+000001a0 <clear_led_matrix_display>:
+
+	start_led_matrix();
+	write_led_matrix(DOT_MATRIX_BASE_ADDR); //Display I2C addres + R/W bit
+	write_led_matrix(0x81);					//Display OFF - Blink On
+	stop_led_matrix();
+}
+ 1a0:	0f 93       	push	r16
+ 1a2:	1f 93       	push	r17
+ 1a4:	cf 93       	push	r28
+ 1a6:	df 93       	push	r29
+
+void clear_led_matrix_display(void)
+{
+ 1a8:	c0 e0       	ldi	r28, 0x00	; 0
+outputs:	
+notes:			
+Version :    	DMK, Initial code
+*******************************************************************/
+{
+	TWCR = (0x80 | 0x10 | 0x04);
+ 1aa:	04 e7       	ldi	r16, 0x74	; 116
+ 1ac:	10 e0       	ldi	r17, 0x00	; 0
+ 1ae:	d4 e9       	ldi	r29, 0x94	; 148
+void clear_led_matrix_display(void)
+{
+
+	for (int i = 0; i < 8; i++)
 	{
 		start_led_matrix();
- 1a6:	bd df       	rcall	.-134    	; 0x122 <start_led_matrix>
-		write_led_matrix(DOT_MATRIX_BASE_ADDR + addr[i]);
- 1a8:	f7 01       	movw	r30, r14
- 1aa:	10 81       	ld	r17, Z
- 1ac:	f2 e0       	ldi	r31, 0x02	; 2
- 1ae:	ef 0e       	add	r14, r31
- 1b0:	f1 1c       	adc	r15, r1
- 1b2:	10 52       	subi	r17, 0x20	; 32
- 1b4:	81 2f       	mov	r24, r17
- 1b6:	c2 df       	rcall	.-124    	; 0x13c <write_led_matrix>
-		write_led_matrix(0x21);
- 1b8:	81 e2       	ldi	r24, 0x21	; 33
- 1ba:	c0 df       	rcall	.-128    	; 0x13c <write_led_matrix>
-	while( 0x00 == (TWCR & 0x80) );
-}
-
-void stop_led_matrix(void)
+ 1b0:	b8 df       	rcall	.-144    	; 0x122 <start_led_matrix>
+		write_led_matrix(DOT_MATRIX_BASE_ADDR);
+ 1b2:	80 ee       	ldi	r24, 0xE0	; 224
+ 1b4:	c3 df       	rcall	.-122    	; 0x13c <write_led_matrix>
+		write_led_matrix(0x00 + (i * 2));
+ 1b6:	8c 2f       	mov	r24, r28
+ 1b8:	c1 df       	rcall	.-126    	; 0x13c <write_led_matrix>
+		write_led_matrix(0x00);
+ 1ba:	80 e0       	ldi	r24, 0x00	; 0
+ 1bc:	bf df       	rcall	.-130    	; 0x13c <write_led_matrix>
+ 1be:	f8 01       	movw	r30, r16
+outputs:	
+notes:			
+Version :    	DMK, Initial code
+*******************************************************************/
 {
 	TWCR = (0x80 | 0x10 | 0x04);
- 1bc:	f6 01       	movw	r30, r12
-		start_led_matrix();
-		write_led_matrix(DOT_MATRIX_BASE_ADDR + addr[i]);
-		write_led_matrix(0x21);
-		stop_led_matrix();
-		
-		start_led_matrix();
- 1be:	00 83       	st	Z, r16
-		write_led_matrix(DOT_MATRIX_BASE_ADDR + addr[i]);
- 1c0:	b0 df       	rcall	.-160    	; 0x122 <start_led_matrix>
- 1c2:	81 2f       	mov	r24, r17
-		write_led_matrix(0xA0);
- 1c4:	bb df       	rcall	.-138    	; 0x13c <write_led_matrix>
- 1c6:	80 ea       	ldi	r24, 0xA0	; 160
-	while( 0x00 == (TWCR & 0x80) );
+ 1c0:	d0 83       	st	Z, r29
+ 1c2:	ce 5f       	subi	r28, 0xFE	; 254
+ 1c4:	c0 31       	cpi	r28, 0x10	; 16
 }
 
-void stop_led_matrix(void)
+void clear_led_matrix_display(void)
 {
-	TWCR = (0x80 | 0x10 | 0x04);
- 1c8:	b9 df       	rcall	.-142    	; 0x13c <write_led_matrix>
-		start_led_matrix();
-		write_led_matrix(DOT_MATRIX_BASE_ADDR + addr[i]);
-		write_led_matrix(0xA0);
-		stop_led_matrix();
-		
-		start_led_matrix();
- 1ca:	f6 01       	movw	r30, r12
-		write_led_matrix(DOT_MATRIX_BASE_ADDR + addr[i]);
- 1cc:	00 83       	st	Z, r16
- 1ce:	a9 df       	rcall	.-174    	; 0x122 <start_led_matrix>
-		write_led_matrix(0xE7);
- 1d0:	81 2f       	mov	r24, r17
- 1d2:	b4 df       	rcall	.-152    	; 0x13c <write_led_matrix>
-	while( 0x00 == (TWCR & 0x80) );
-}
 
-void stop_led_matrix(void)
-{
-	TWCR = (0x80 | 0x10 | 0x04);
- 1d4:	87 ee       	ldi	r24, 0xE7	; 231
- 1d6:	b2 df       	rcall	.-156    	; 0x13c <write_led_matrix>
-		start_led_matrix();
-		write_led_matrix(DOT_MATRIX_BASE_ADDR + addr[i]);
-		write_led_matrix(0xE7);
-		stop_led_matrix();
-		
-		start_led_matrix();
- 1d8:	f6 01       	movw	r30, r12
- 1da:	00 83       	st	Z, r16
-		write_led_matrix(DOT_MATRIX_BASE_ADDR + addr[i]);
- 1dc:	a2 df       	rcall	.-188    	; 0x122 <start_led_matrix>
- 1de:	81 2f       	mov	r24, r17
- 1e0:	ad df       	rcall	.-166    	; 0x13c <write_led_matrix>
-		write_led_matrix(0x81);
- 1e2:	81 e8       	ldi	r24, 0x81	; 129
- 1e4:	ab df       	rcall	.-170    	; 0x13c <write_led_matrix>
- 1e6:	f6 01       	movw	r30, r12
-	while( 0x00 == (TWCR & 0x80) );
-}
-
-void stop_led_matrix(void)
-{
-	TWCR = (0x80 | 0x10 | 0x04);
- 1e8:	00 83       	st	Z, r16
- 1ea:	ea 14       	cp	r14, r10
-{
-	TWSR = 0;
-	TWBR = 32;
-	
-	int addr[] = { 0, 2, 8 };
-	for (int i = 0; i < 3; i++)
- 1ec:	fb 04       	cpc	r15, r11
- 1ee:	d9 f6       	brne	.-74     	; 0x1a6 <init_led_matrix+0x54>
- 1f0:	26 96       	adiw	r28, 0x06	; 6
-		start_led_matrix();
-		write_led_matrix(DOT_MATRIX_BASE_ADDR + addr[i]);
-		write_led_matrix(0x81);
+	for (int i = 0; i < 8; i++)
+ 1c6:	a1 f7       	brne	.-24     	; 0x1b0 <clear_led_matrix_display+0x10>
+ 1c8:	df 91       	pop	r29
+		write_led_matrix(DOT_MATRIX_BASE_ADDR);
+		write_led_matrix(0x00 + (i * 2));
+		write_led_matrix(0x00);
 		stop_led_matrix();
 	}
 }
- 1f2:	0f b6       	in	r0, 0x3f	; 63
- 1f4:	f8 94       	cli
- 1f6:	de bf       	out	0x3e, r29	; 62
- 1f8:	0f be       	out	0x3f, r0	; 63
- 1fa:	cd bf       	out	0x3d, r28	; 61
- 1fc:	df 91       	pop	r29
- 1fe:	cf 91       	pop	r28
- 200:	1f 91       	pop	r17
- 202:	0f 91       	pop	r16
- 204:	ff 90       	pop	r15
- 206:	ef 90       	pop	r14
- 208:	df 90       	pop	r13
- 20a:	cf 90       	pop	r12
- 20c:	bf 90       	pop	r11
- 20e:	af 90       	pop	r10
- 210:	08 95       	ret
+ 1ca:	cf 91       	pop	r28
+ 1cc:	1f 91       	pop	r17
+ 1ce:	0f 91       	pop	r16
+ 1d0:	08 95       	ret
 
-00000212 <clear_led_matrix_display>:
- 212:	af 92       	push	r10
-
-void clear_led_matrix_display(void)
-{
- 214:	bf 92       	push	r11
- 216:	cf 92       	push	r12
- 218:	df 92       	push	r13
- 21a:	ef 92       	push	r14
- 21c:	ff 92       	push	r15
- 21e:	0f 93       	push	r16
- 220:	1f 93       	push	r17
- 222:	cf 93       	push	r28
- 224:	df 93       	push	r29
- 226:	00 d0       	rcall	.+0      	; 0x228 <clear_led_matrix_display+0x16>
- 228:	00 d0       	rcall	.+0      	; 0x22a <clear_led_matrix_display+0x18>
- 22a:	00 d0       	rcall	.+0      	; 0x22c <clear_led_matrix_display+0x1a>
- 22c:	cd b7       	in	r28, 0x3d	; 61
- 22e:	de b7       	in	r29, 0x3e	; 62
-	int addr[] = { 0, 2, 8 };
- 230:	86 e0       	ldi	r24, 0x06	; 6
- 232:	ee e3       	ldi	r30, 0x3E	; 62
- 234:	f3 e0       	ldi	r31, 0x03	; 3
- 236:	de 01       	movw	r26, r28
- 238:	11 96       	adiw	r26, 0x01	; 1
- 23a:	01 90       	ld	r0, Z+
- 23c:	0d 92       	st	X+, r0
- 23e:	8a 95       	dec	r24
- 240:	e1 f7       	brne	.-8      	; 0x23a <clear_led_matrix_display+0x28>
- 242:	ce 01       	movw	r24, r28
- 244:	01 96       	adiw	r24, 0x01	; 1
- 246:	7c 01       	movw	r14, r24
- 248:	5e 01       	movw	r10, r28
- 24a:	97 e0       	ldi	r25, 0x07	; 7
- 24c:	a9 0e       	add	r10, r25
- 24e:	b1 1c       	adc	r11, r1
-	while( 0x00 == (TWCR & 0x80) );
-}
-
-void stop_led_matrix(void)
-{
-	TWCR = (0x80 | 0x10 | 0x04);
- 250:	0f 2e       	mov	r0, r31
- 252:	f4 e7       	ldi	r31, 0x74	; 116
- 254:	cf 2e       	mov	r12, r31
- 256:	d1 2c       	mov	r13, r1
- 258:	f0 2d       	mov	r31, r0
- 25a:	04 e9       	ldi	r16, 0x94	; 148
- 25c:	14 c0       	rjmp	.+40     	; 0x286 <clear_led_matrix_display+0x74>
-	int addr[] = { 0, 2, 8 };
-
-	for(int i = 0; i < 3;i++){
-		for (int j = 0; j < 8; j++)
-		{
-			start_led_matrix();
- 25e:	61 df       	rcall	.-318    	; 0x122 <start_led_matrix>
-			write_led_matrix(DOT_MATRIX_BASE_ADDR + addr[i]);
- 260:	f7 01       	movw	r30, r14
- 262:	80 81       	ld	r24, Z
- 264:	80 52       	subi	r24, 0x20	; 32
- 266:	6a df       	rcall	.-300    	; 0x13c <write_led_matrix>
-			write_led_matrix(0x00 + (j * 2));
- 268:	81 2f       	mov	r24, r17
- 26a:	68 df       	rcall	.-304    	; 0x13c <write_led_matrix>
-			write_led_matrix(0x00);
- 26c:	80 e0       	ldi	r24, 0x00	; 0
- 26e:	66 df       	rcall	.-308    	; 0x13c <write_led_matrix>
- 270:	f6 01       	movw	r30, r12
-	while( 0x00 == (TWCR & 0x80) );
-}
-
-void stop_led_matrix(void)
-{
-	TWCR = (0x80 | 0x10 | 0x04);
- 272:	00 83       	st	Z, r16
- 274:	1e 5f       	subi	r17, 0xFE	; 254
- 276:	10 31       	cpi	r17, 0x10	; 16
-void clear_led_matrix_display(void)
-{
-	int addr[] = { 0, 2, 8 };
-
-	for(int i = 0; i < 3;i++){
-		for (int j = 0; j < 8; j++)
- 278:	91 f7       	brne	.-28     	; 0x25e <clear_led_matrix_display+0x4c>
- 27a:	f2 e0       	ldi	r31, 0x02	; 2
- 27c:	ef 0e       	add	r14, r31
- 27e:	f1 1c       	adc	r15, r1
- 280:	ae 14       	cp	r10, r14
-
-void clear_led_matrix_display(void)
-{
-	int addr[] = { 0, 2, 8 };
-
-	for(int i = 0; i < 3;i++){
- 282:	bf 04       	cpc	r11, r15
- 284:	11 f0       	breq	.+4      	; 0x28a <clear_led_matrix_display+0x78>
- 286:	10 e0       	ldi	r17, 0x00	; 0
-		stop_led_matrix();
+000001d2 <scroller_set_text>:
+ 1d2:	cf 92       	push	r12
 	}
-}
-
-void clear_led_matrix_display(void)
-{
- 288:	ea cf       	rjmp	.-44     	; 0x25e <clear_led_matrix_display+0x4c>
- 28a:	26 96       	adiw	r28, 0x06	; 6
-			write_led_matrix(0x00 + (j * 2));
-			write_led_matrix(0x00);
-			stop_led_matrix();
-		}
-	}
-}
- 28c:	0f b6       	in	r0, 0x3f	; 63
- 28e:	f8 94       	cli
- 290:	de bf       	out	0x3e, r29	; 62
- 292:	0f be       	out	0x3f, r0	; 63
- 294:	cd bf       	out	0x3d, r28	; 61
- 296:	df 91       	pop	r29
- 298:	cf 91       	pop	r28
- 29a:	1f 91       	pop	r17
- 29c:	0f 91       	pop	r16
- 29e:	ff 90       	pop	r15
- 2a0:	ef 90       	pop	r14
- 2a2:	df 90       	pop	r13
- 2a4:	cf 90       	pop	r12
- 2a6:	bf 90       	pop	r11
- 2a8:	af 90       	pop	r10
- 2aa:	08 95       	ret
-
-000002ac <scroller_set_text>:
- 2ac:	cf 92       	push	r12
-	buffer[i] = 0;
 }
 
 void scroller_set_speed(int speed)
 {
 	scrollingSpeed = speed;
- 2ae:	df 92       	push	r13
- 2b0:	ef 92       	push	r14
- 2b2:	ff 92       	push	r15
- 2b4:	0f 93       	push	r16
- 2b6:	1f 93       	push	r17
- 2b8:	cf 93       	push	r28
- 2ba:	df 93       	push	r29
- 2bc:	cd b7       	in	r28, 0x3d	; 61
- 2be:	de b7       	in	r29, 0x3e	; 62
- 2c0:	63 97       	sbiw	r28, 0x13	; 19
- 2c2:	0f b6       	in	r0, 0x3f	; 63
- 2c4:	f8 94       	cli
- 2c6:	de bf       	out	0x3e, r29	; 62
- 2c8:	0f be       	out	0x3f, r0	; 63
- 2ca:	cd bf       	out	0x3d, r28	; 61
- 2cc:	6c 01       	movw	r12, r24
- 2ce:	7c 01       	movw	r14, r24
- 2d0:	00 e0       	ldi	r16, 0x00	; 0
- 2d2:	10 e0       	ldi	r17, 0x00	; 0
- 2d4:	6e c0       	rjmp	.+220    	; 0x3b2 <scroller_set_text+0x106>
- 2d6:	f7 01       	movw	r30, r14
- 2d8:	80 81       	ld	r24, Z
- 2da:	90 e0       	ldi	r25, 0x00	; 0
- 2dc:	29 d1       	rcall	.+594    	; 0x530 <toupper>
- 2de:	f7 01       	movw	r30, r14
- 2e0:	81 93       	st	Z+, r24
- 2e2:	7f 01       	movw	r14, r30
- 2e4:	68 2f       	mov	r22, r24
- 2e6:	ce 01       	movw	r24, r28
- 2e8:	01 96       	adiw	r24, 0x01	; 1
- 2ea:	ee de       	rcall	.-548    	; 0xc8 <look_up_character>
- 2ec:	89 81       	ldd	r24, Y+1	; 0x01
- 2ee:	80 32       	cpi	r24, 0x20	; 32
- 2f0:	c9 f1       	breq	.+114    	; 0x364 <scroller_set_text+0xb8>
- 2f2:	4a 81       	ldd	r20, Y+2	; 0x02
- 2f4:	5b 81       	ldd	r21, Y+3	; 0x03
- 2f6:	14 16       	cp	r1, r20
- 2f8:	15 06       	cpc	r1, r21
- 2fa:	1c f5       	brge	.+70     	; 0x342 <scroller_set_text+0x96>
- 2fc:	fe 01       	movw	r30, r28
- 2fe:	34 96       	adiw	r30, 0x04	; 4
- 300:	60 91 5c 03 	lds	r22, 0x035C	; 0x80035c <__data_end>
- 304:	70 91 5d 03 	lds	r23, 0x035D	; 0x80035d <__data_end+0x1>
- 308:	db 01       	movw	r26, r22
- 30a:	aa 0f       	add	r26, r26
- 30c:	bb 1f       	adc	r27, r27
- 30e:	a0 5a       	subi	r26, 0xA0	; 160
- 310:	bc 4f       	sbci	r27, 0xFC	; 252
- 312:	9a 01       	movw	r18, r20
- 314:	22 0f       	add	r18, r18
- 316:	33 1f       	adc	r19, r19
- 318:	2d 5f       	subi	r18, 0xFD	; 253
- 31a:	3f 4f       	sbci	r19, 0xFF	; 255
- 31c:	81 e0       	ldi	r24, 0x01	; 1
- 31e:	90 e0       	ldi	r25, 0x00	; 0
- 320:	8c 0f       	add	r24, r28
- 322:	9d 1f       	adc	r25, r29
- 324:	28 0f       	add	r18, r24
- 326:	39 1f       	adc	r19, r25
- 328:	81 91       	ld	r24, Z+
- 32a:	91 91       	ld	r25, Z+
- 32c:	8d 93       	st	X+, r24
- 32e:	9d 93       	st	X+, r25
- 330:	e2 17       	cp	r30, r18
- 332:	f3 07       	cpc	r31, r19
- 334:	c9 f7       	brne	.-14     	; 0x328 <scroller_set_text+0x7c>
- 336:	46 0f       	add	r20, r22
- 338:	57 1f       	adc	r21, r23
- 33a:	50 93 5d 03 	sts	0x035D, r21	; 0x80035d <__data_end+0x1>
- 33e:	40 93 5c 03 	sts	0x035C, r20	; 0x80035c <__data_end>
- 342:	80 91 5c 03 	lds	r24, 0x035C	; 0x80035c <__data_end>
- 346:	90 91 5d 03 	lds	r25, 0x035D	; 0x80035d <__data_end+0x1>
- 34a:	fc 01       	movw	r30, r24
- 34c:	ee 0f       	add	r30, r30
- 34e:	ff 1f       	adc	r31, r31
- 350:	e0 5a       	subi	r30, 0xA0	; 160
- 352:	fc 4f       	sbci	r31, 0xFC	; 252
- 354:	11 82       	std	Z+1, r1	; 0x01
- 356:	10 82       	st	Z, r1
- 358:	01 96       	adiw	r24, 0x01	; 1
- 35a:	90 93 5d 03 	sts	0x035D, r25	; 0x80035d <__data_end+0x1>
- 35e:	80 93 5c 03 	sts	0x035C, r24	; 0x80035c <__data_end>
- 362:	25 c0       	rjmp	.+74     	; 0x3ae <scroller_set_text+0x102>
- 364:	80 91 5c 03 	lds	r24, 0x035C	; 0x80035c <__data_end>
- 368:	90 91 5d 03 	lds	r25, 0x035D	; 0x80035d <__data_end+0x1>
- 36c:	fc 01       	movw	r30, r24
- 36e:	ee 0f       	add	r30, r30
- 370:	ff 1f       	adc	r31, r31
- 372:	e0 5a       	subi	r30, 0xA0	; 160
- 374:	fc 4f       	sbci	r31, 0xFC	; 252
- 376:	11 82       	std	Z+1, r1	; 0x01
- 378:	10 82       	st	Z, r1
- 37a:	fc 01       	movw	r30, r24
- 37c:	ee 0f       	add	r30, r30
- 37e:	ff 1f       	adc	r31, r31
- 380:	ee 59       	subi	r30, 0x9E	; 158
- 382:	fc 4f       	sbci	r31, 0xFC	; 252
- 384:	11 82       	std	Z+1, r1	; 0x01
- 386:	10 82       	st	Z, r1
- 388:	fc 01       	movw	r30, r24
- 38a:	ee 0f       	add	r30, r30
- 38c:	ff 1f       	adc	r31, r31
- 38e:	ec 59       	subi	r30, 0x9C	; 156
- 390:	fc 4f       	sbci	r31, 0xFC	; 252
- 392:	11 82       	std	Z+1, r1	; 0x01
- 394:	10 82       	st	Z, r1
- 396:	fc 01       	movw	r30, r24
- 398:	ee 0f       	add	r30, r30
- 39a:	ff 1f       	adc	r31, r31
- 39c:	ea 59       	subi	r30, 0x9A	; 154
- 39e:	fc 4f       	sbci	r31, 0xFC	; 252
- 3a0:	11 82       	std	Z+1, r1	; 0x01
- 3a2:	10 82       	st	Z, r1
- 3a4:	04 96       	adiw	r24, 0x04	; 4
- 3a6:	90 93 5d 03 	sts	0x035D, r25	; 0x80035d <__data_end+0x1>
- 3aa:	80 93 5c 03 	sts	0x035C, r24	; 0x80035c <__data_end>
- 3ae:	0f 5f       	subi	r16, 0xFF	; 255
- 3b0:	1f 4f       	sbci	r17, 0xFF	; 255
- 3b2:	f6 01       	movw	r30, r12
- 3b4:	01 90       	ld	r0, Z+
- 3b6:	00 20       	and	r0, r0
- 3b8:	e9 f7       	brne	.-6      	; 0x3b4 <scroller_set_text+0x108>
- 3ba:	31 97       	sbiw	r30, 0x01	; 1
- 3bc:	ec 19       	sub	r30, r12
- 3be:	fd 09       	sbc	r31, r13
- 3c0:	0e 17       	cp	r16, r30
- 3c2:	1f 07       	cpc	r17, r31
- 3c4:	08 f4       	brcc	.+2      	; 0x3c8 <scroller_set_text+0x11c>
- 3c6:	87 cf       	rjmp	.-242    	; 0x2d6 <scroller_set_text+0x2a>
- 3c8:	80 91 5c 03 	lds	r24, 0x035C	; 0x80035c <__data_end>
- 3cc:	90 91 5d 03 	lds	r25, 0x035D	; 0x80035d <__data_end+0x1>
- 3d0:	47 96       	adiw	r24, 0x17	; 23
- 3d2:	90 93 5f 03 	sts	0x035F, r25	; 0x80035f <updateCount+0x1>
- 3d6:	80 93 5e 03 	sts	0x035E, r24	; 0x80035e <updateCount>
- 3da:	63 96       	adiw	r28, 0x13	; 19
- 3dc:	0f b6       	in	r0, 0x3f	; 63
- 3de:	f8 94       	cli
- 3e0:	de bf       	out	0x3e, r29	; 62
- 3e2:	0f be       	out	0x3f, r0	; 63
- 3e4:	cd bf       	out	0x3d, r28	; 61
- 3e6:	df 91       	pop	r29
- 3e8:	cf 91       	pop	r28
- 3ea:	1f 91       	pop	r17
- 3ec:	0f 91       	pop	r16
- 3ee:	ff 90       	pop	r15
- 3f0:	ef 90       	pop	r14
- 3f2:	df 90       	pop	r13
- 3f4:	cf 90       	pop	r12
- 3f6:	08 95       	ret
+ 1d4:	df 92       	push	r13
+ 1d6:	ef 92       	push	r14
+ 1d8:	ff 92       	push	r15
+ 1da:	0f 93       	push	r16
+ 1dc:	1f 93       	push	r17
+ 1de:	cf 93       	push	r28
+ 1e0:	df 93       	push	r29
+ 1e2:	cd b7       	in	r28, 0x3d	; 61
+ 1e4:	de b7       	in	r29, 0x3e	; 62
+ 1e6:	63 97       	sbiw	r28, 0x13	; 19
+ 1e8:	0f b6       	in	r0, 0x3f	; 63
+ 1ea:	f8 94       	cli
+ 1ec:	de bf       	out	0x3e, r29	; 62
+ 1ee:	0f be       	out	0x3f, r0	; 63
+ 1f0:	cd bf       	out	0x3d, r28	; 61
+ 1f2:	6c 01       	movw	r12, r24
+ 1f4:	7c 01       	movw	r14, r24
+ 1f6:	00 e0       	ldi	r16, 0x00	; 0
+ 1f8:	10 e0       	ldi	r17, 0x00	; 0
+ 1fa:	45 c0       	rjmp	.+138    	; 0x286 <scroller_set_text+0xb4>
+ 1fc:	f7 01       	movw	r30, r14
+ 1fe:	80 81       	ld	r24, Z
+ 200:	90 e0       	ldi	r25, 0x00	; 0
+ 202:	cd d0       	rcall	.+410    	; 0x39e <toupper>
+ 204:	f7 01       	movw	r30, r14
+ 206:	81 93       	st	Z+, r24
+ 208:	7f 01       	movw	r14, r30
+ 20a:	68 2f       	mov	r22, r24
+ 20c:	ce 01       	movw	r24, r28
+ 20e:	01 96       	adiw	r24, 0x01	; 1
+ 210:	5b df       	rcall	.-330    	; 0xc8 <look_up_character>
+ 212:	4a 81       	ldd	r20, Y+2	; 0x02
+ 214:	5b 81       	ldd	r21, Y+3	; 0x03
+ 216:	14 16       	cp	r1, r20
+ 218:	15 06       	cpc	r1, r21
+ 21a:	1c f5       	brge	.+70     	; 0x262 <scroller_set_text+0x90>
+ 21c:	fe 01       	movw	r30, r28
+ 21e:	34 96       	adiw	r30, 0x04	; 4
+ 220:	60 91 42 03 	lds	r22, 0x0342	; 0x800342 <__data_end>
+ 224:	70 91 43 03 	lds	r23, 0x0343	; 0x800343 <__data_end+0x1>
+ 228:	db 01       	movw	r26, r22
+ 22a:	aa 0f       	add	r26, r26
+ 22c:	bb 1f       	adc	r27, r27
+ 22e:	aa 5b       	subi	r26, 0xBA	; 186
+ 230:	bc 4f       	sbci	r27, 0xFC	; 252
+ 232:	9a 01       	movw	r18, r20
+ 234:	22 0f       	add	r18, r18
+ 236:	33 1f       	adc	r19, r19
+ 238:	2d 5f       	subi	r18, 0xFD	; 253
+ 23a:	3f 4f       	sbci	r19, 0xFF	; 255
+ 23c:	81 e0       	ldi	r24, 0x01	; 1
+ 23e:	90 e0       	ldi	r25, 0x00	; 0
+ 240:	8c 0f       	add	r24, r28
+ 242:	9d 1f       	adc	r25, r29
+ 244:	28 0f       	add	r18, r24
+ 246:	39 1f       	adc	r19, r25
+ 248:	81 91       	ld	r24, Z+
+ 24a:	91 91       	ld	r25, Z+
+ 24c:	8d 93       	st	X+, r24
+ 24e:	9d 93       	st	X+, r25
+ 250:	e2 17       	cp	r30, r18
+ 252:	f3 07       	cpc	r31, r19
+ 254:	c9 f7       	brne	.-14     	; 0x248 <scroller_set_text+0x76>
+ 256:	46 0f       	add	r20, r22
+ 258:	57 1f       	adc	r21, r23
+ 25a:	50 93 43 03 	sts	0x0343, r21	; 0x800343 <__data_end+0x1>
+ 25e:	40 93 42 03 	sts	0x0342, r20	; 0x800342 <__data_end>
+ 262:	80 91 42 03 	lds	r24, 0x0342	; 0x800342 <__data_end>
+ 266:	90 91 43 03 	lds	r25, 0x0343	; 0x800343 <__data_end+0x1>
+ 26a:	fc 01       	movw	r30, r24
+ 26c:	ee 0f       	add	r30, r30
+ 26e:	ff 1f       	adc	r31, r31
+ 270:	ea 5b       	subi	r30, 0xBA	; 186
+ 272:	fc 4f       	sbci	r31, 0xFC	; 252
+ 274:	11 82       	std	Z+1, r1	; 0x01
+ 276:	10 82       	st	Z, r1
+ 278:	01 96       	adiw	r24, 0x01	; 1
+ 27a:	90 93 43 03 	sts	0x0343, r25	; 0x800343 <__data_end+0x1>
+ 27e:	80 93 42 03 	sts	0x0342, r24	; 0x800342 <__data_end>
+ 282:	0f 5f       	subi	r16, 0xFF	; 255
+ 284:	1f 4f       	sbci	r17, 0xFF	; 255
+ 286:	f6 01       	movw	r30, r12
+ 288:	01 90       	ld	r0, Z+
+ 28a:	00 20       	and	r0, r0
+ 28c:	e9 f7       	brne	.-6      	; 0x288 <scroller_set_text+0xb6>
+ 28e:	31 97       	sbiw	r30, 0x01	; 1
+ 290:	ec 19       	sub	r30, r12
+ 292:	fd 09       	sbc	r31, r13
+ 294:	0e 17       	cp	r16, r30
+ 296:	1f 07       	cpc	r17, r31
+ 298:	08 f4       	brcc	.+2      	; 0x29c <scroller_set_text+0xca>
+ 29a:	b0 cf       	rjmp	.-160    	; 0x1fc <scroller_set_text+0x2a>
+ 29c:	80 91 42 03 	lds	r24, 0x0342	; 0x800342 <__data_end>
+ 2a0:	90 91 43 03 	lds	r25, 0x0343	; 0x800343 <__data_end+0x1>
+ 2a4:	47 96       	adiw	r24, 0x17	; 23
+ 2a6:	90 93 45 03 	sts	0x0345, r25	; 0x800345 <updateCount+0x1>
+ 2aa:	80 93 44 03 	sts	0x0344, r24	; 0x800344 <updateCount>
+ 2ae:	63 96       	adiw	r28, 0x13	; 19
+ 2b0:	0f b6       	in	r0, 0x3f	; 63
+ 2b2:	f8 94       	cli
+ 2b4:	de bf       	out	0x3e, r29	; 62
+ 2b6:	0f be       	out	0x3f, r0	; 63
+ 2b8:	cd bf       	out	0x3d, r28	; 61
+ 2ba:	df 91       	pop	r29
+ 2bc:	cf 91       	pop	r28
+ 2be:	1f 91       	pop	r17
+ 2c0:	0f 91       	pop	r16
+ 2c2:	ff 90       	pop	r15
+ 2c4:	ef 90       	pop	r14
+ 2c6:	df 90       	pop	r13
+ 2c8:	cf 90       	pop	r12
+ 2ca:	08 95       	ret
 
-000003f8 <scroller_scroll_left>:
- 3f8:	bf 92       	push	r11
- 3fa:	cf 92       	push	r12
- 3fc:	df 92       	push	r13
- 3fe:	ef 92       	push	r14
- 400:	ff 92       	push	r15
- 402:	0f 93       	push	r16
- 404:	1f 93       	push	r17
- 406:	cf 93       	push	r28
- 408:	df 93       	push	r29
- 40a:	00 e0       	ldi	r16, 0x00	; 0
- 40c:	10 e0       	ldi	r17, 0x00	; 0
- 40e:	e1 2c       	mov	r14, r1
- 410:	f1 2c       	mov	r15, r1
- 412:	0f 2e       	mov	r0, r31
- 414:	fb e2       	ldi	r31, 0x2B	; 43
- 416:	bf 2e       	mov	r11, r31
- 418:	f0 2d       	mov	r31, r0
- 41a:	cc 24       	eor	r12, r12
- 41c:	c3 94       	inc	r12
- 41e:	81 de       	rcall	.-766    	; 0x122 <start_led_matrix>
- 420:	01 30       	cpi	r16, 0x01	; 1
- 422:	11 05       	cpc	r17, r1
- 424:	49 f0       	breq	.+18     	; 0x438 <__LOCK_REGION_LENGTH__+0x38>
- 426:	02 30       	cpi	r16, 0x02	; 2
- 428:	11 05       	cpc	r17, r1
- 42a:	49 f0       	breq	.+18     	; 0x43e <__LOCK_REGION_LENGTH__+0x3e>
- 42c:	01 15       	cp	r16, r1
- 42e:	11 05       	cpc	r17, r1
- 430:	41 f4       	brne	.+16     	; 0x442 <__LOCK_REGION_LENGTH__+0x42>
- 432:	80 ee       	ldi	r24, 0xE0	; 224
- 434:	83 de       	rcall	.-762    	; 0x13c <write_led_matrix>
- 436:	05 c0       	rjmp	.+10     	; 0x442 <__LOCK_REGION_LENGTH__+0x42>
- 438:	82 ee       	ldi	r24, 0xE2	; 226
- 43a:	80 de       	rcall	.-768    	; 0x13c <write_led_matrix>
- 43c:	02 c0       	rjmp	.+4      	; 0x442 <__LOCK_REGION_LENGTH__+0x42>
- 43e:	88 ee       	ldi	r24, 0xE8	; 232
- 440:	7d de       	rcall	.-774    	; 0x13c <write_led_matrix>
- 442:	e7 01       	movw	r28, r14
- 444:	d1 2c       	mov	r13, r1
- 446:	8d 2d       	mov	r24, r13
- 448:	79 de       	rcall	.-782    	; 0x13c <write_led_matrix>
- 44a:	80 91 5e 03 	lds	r24, 0x035E	; 0x80035e <updateCount>
- 44e:	90 91 5f 03 	lds	r25, 0x035F	; 0x80035f <updateCount+0x1>
- 452:	9e 01       	movw	r18, r28
- 454:	28 1b       	sub	r18, r24
- 456:	39 0b       	sbc	r19, r25
- 458:	80 91 5c 03 	lds	r24, 0x035C	; 0x80035c <__data_end>
- 45c:	90 91 5d 03 	lds	r25, 0x035D	; 0x80035d <__data_end+0x1>
- 460:	82 0f       	add	r24, r18
- 462:	93 1f       	adc	r25, r19
- 464:	01 96       	adiw	r24, 0x01	; 1
- 466:	12 f4       	brpl	.+4      	; 0x46c <__LOCK_REGION_LENGTH__+0x6c>
- 468:	8b 2d       	mov	r24, r11
- 46a:	9c 2d       	mov	r25, r12
- 46c:	88 0f       	add	r24, r24
- 46e:	99 1f       	adc	r25, r25
- 470:	fc 01       	movw	r30, r24
- 472:	e0 5a       	subi	r30, 0xA0	; 160
- 474:	fc 4f       	sbci	r31, 0xFC	; 252
- 476:	80 81       	ld	r24, Z
- 478:	61 de       	rcall	.-830    	; 0x13c <write_led_matrix>
- 47a:	21 96       	adiw	r28, 0x01	; 1
- 47c:	d3 94       	inc	r13
- 47e:	d3 94       	inc	r13
- 480:	80 e1       	ldi	r24, 0x10	; 16
- 482:	d8 12       	cpse	r13, r24
- 484:	e0 cf       	rjmp	.-64     	; 0x446 <__LOCK_REGION_LENGTH__+0x46>
- 486:	88 e0       	ldi	r24, 0x08	; 8
- 488:	e8 0e       	add	r14, r24
- 48a:	f1 1c       	adc	r15, r1
- 48c:	53 de       	rcall	.-858    	; 0x134 <stop_led_matrix>
- 48e:	0f 5f       	subi	r16, 0xFF	; 255
- 490:	1f 4f       	sbci	r17, 0xFF	; 255
- 492:	88 e1       	ldi	r24, 0x18	; 24
- 494:	e8 16       	cp	r14, r24
- 496:	f1 04       	cpc	r15, r1
- 498:	09 f0       	breq	.+2      	; 0x49c <__LOCK_REGION_LENGTH__+0x9c>
- 49a:	c1 cf       	rjmp	.-126    	; 0x41e <__LOCK_REGION_LENGTH__+0x1e>
- 49c:	80 91 5e 03 	lds	r24, 0x035E	; 0x80035e <updateCount>
- 4a0:	90 91 5f 03 	lds	r25, 0x035F	; 0x80035f <updateCount+0x1>
- 4a4:	01 97       	sbiw	r24, 0x01	; 1
- 4a6:	90 93 5f 03 	sts	0x035F, r25	; 0x80035f <updateCount+0x1>
- 4aa:	80 93 5e 03 	sts	0x035E, r24	; 0x80035e <updateCount>
- 4ae:	18 16       	cp	r1, r24
- 4b0:	19 06       	cpc	r1, r25
- 4b2:	4c f0       	brlt	.+18     	; 0x4c6 <__LOCK_REGION_LENGTH__+0xc6>
- 4b4:	80 91 5c 03 	lds	r24, 0x035C	; 0x80035c <__data_end>
- 4b8:	90 91 5d 03 	lds	r25, 0x035D	; 0x80035d <__data_end+0x1>
- 4bc:	47 96       	adiw	r24, 0x17	; 23
- 4be:	90 93 5f 03 	sts	0x035F, r25	; 0x80035f <updateCount+0x1>
- 4c2:	80 93 5e 03 	sts	0x035E, r24	; 0x80035e <updateCount>
- 4c6:	df 91       	pop	r29
- 4c8:	cf 91       	pop	r28
- 4ca:	1f 91       	pop	r17
- 4cc:	0f 91       	pop	r16
- 4ce:	ff 90       	pop	r15
- 4d0:	ef 90       	pop	r14
- 4d2:	df 90       	pop	r13
- 4d4:	cf 90       	pop	r12
- 4d6:	bf 90       	pop	r11
- 4d8:	08 95       	ret
+000002cc <scroller_scroll_left>:
+ 2cc:	ff 92       	push	r15
+ 2ce:	0f 93       	push	r16
+ 2d0:	1f 93       	push	r17
+ 2d2:	cf 93       	push	r28
+ 2d4:	df 93       	push	r29
+ 2d6:	25 df       	rcall	.-438    	; 0x122 <start_led_matrix>
+ 2d8:	80 ee       	ldi	r24, 0xE0	; 224
+ 2da:	30 df       	rcall	.-416    	; 0x13c <write_led_matrix>
+ 2dc:	10 e0       	ldi	r17, 0x00	; 0
+ 2de:	c0 e0       	ldi	r28, 0x00	; 0
+ 2e0:	d0 e0       	ldi	r29, 0x00	; 0
+ 2e2:	0f 2e       	mov	r0, r31
+ 2e4:	fd e5       	ldi	r31, 0x5D	; 93
+ 2e6:	ff 2e       	mov	r15, r31
+ 2e8:	f0 2d       	mov	r31, r0
+ 2ea:	01 e0       	ldi	r16, 0x01	; 1
+ 2ec:	81 2f       	mov	r24, r17
+ 2ee:	26 df       	rcall	.-436    	; 0x13c <write_led_matrix>
+ 2f0:	80 91 44 03 	lds	r24, 0x0344	; 0x800344 <updateCount>
+ 2f4:	90 91 45 03 	lds	r25, 0x0345	; 0x800345 <updateCount+0x1>
+ 2f8:	9e 01       	movw	r18, r28
+ 2fa:	28 1b       	sub	r18, r24
+ 2fc:	39 0b       	sbc	r19, r25
+ 2fe:	80 91 42 03 	lds	r24, 0x0342	; 0x800342 <__data_end>
+ 302:	90 91 43 03 	lds	r25, 0x0343	; 0x800343 <__data_end+0x1>
+ 306:	82 0f       	add	r24, r18
+ 308:	93 1f       	adc	r25, r19
+ 30a:	01 96       	adiw	r24, 0x01	; 1
+ 30c:	12 f4       	brpl	.+4      	; 0x312 <scroller_scroll_left+0x46>
+ 30e:	8f 2d       	mov	r24, r15
+ 310:	90 2f       	mov	r25, r16
+ 312:	88 0f       	add	r24, r24
+ 314:	99 1f       	adc	r25, r25
+ 316:	fc 01       	movw	r30, r24
+ 318:	ea 5b       	subi	r30, 0xBA	; 186
+ 31a:	fc 4f       	sbci	r31, 0xFC	; 252
+ 31c:	80 81       	ld	r24, Z
+ 31e:	0e df       	rcall	.-484    	; 0x13c <write_led_matrix>
+ 320:	21 96       	adiw	r28, 0x01	; 1
+ 322:	1e 5f       	subi	r17, 0xFE	; 254
+ 324:	10 31       	cpi	r17, 0x10	; 16
+ 326:	11 f7       	brne	.-60     	; 0x2ec <scroller_scroll_left+0x20>
+ 328:	05 df       	rcall	.-502    	; 0x134 <stop_led_matrix>
+ 32a:	80 91 44 03 	lds	r24, 0x0344	; 0x800344 <updateCount>
+ 32e:	90 91 45 03 	lds	r25, 0x0345	; 0x800345 <updateCount+0x1>
+ 332:	01 97       	sbiw	r24, 0x01	; 1
+ 334:	90 93 45 03 	sts	0x0345, r25	; 0x800345 <updateCount+0x1>
+ 338:	80 93 44 03 	sts	0x0344, r24	; 0x800344 <updateCount>
+ 33c:	18 16       	cp	r1, r24
+ 33e:	19 06       	cpc	r1, r25
+ 340:	4c f0       	brlt	.+18     	; 0x354 <scroller_scroll_left+0x88>
+ 342:	80 91 42 03 	lds	r24, 0x0342	; 0x800342 <__data_end>
+ 346:	90 91 43 03 	lds	r25, 0x0343	; 0x800343 <__data_end+0x1>
+ 34a:	47 96       	adiw	r24, 0x17	; 23
+ 34c:	90 93 45 03 	sts	0x0345, r25	; 0x800345 <updateCount+0x1>
+ 350:	80 93 44 03 	sts	0x0344, r24	; 0x800344 <updateCount>
+ 354:	df 91       	pop	r29
+ 356:	cf 91       	pop	r28
+ 358:	1f 91       	pop	r17
+ 35a:	0f 91       	pop	r16
+ 35c:	ff 90       	pop	r15
+ 35e:	08 95       	ret
 
-000004da <scroller_get_speed>:
+00000360 <scroller_get_speed>:
 }
 
 int scroller_get_speed(void)
 {
 	return scrollingSpeed;
 }
- 4da:	80 91 3a 03 	lds	r24, 0x033A	; 0x80033a <scrollingSpeed>
- 4de:	90 91 3b 03 	lds	r25, 0x033B	; 0x80033b <scrollingSpeed+0x1>
- 4e2:	08 95       	ret
+ 360:	80 91 27 03 	lds	r24, 0x0327	; 0x800327 <scrollingSpeed>
+ 364:	90 91 28 03 	lds	r25, 0x0328	; 0x800328 <scrollingSpeed+0x1>
+ 368:	08 95       	ret
 
-000004e4 <wait>:
-
-
+0000036a <wait>:
+	return 1;
+}
 
 void wait(int ms)
 {
 	for (int i = 0; i < ms; i++)
- 4e4:	18 16       	cp	r1, r24
- 4e6:	19 06       	cpc	r1, r25
- 4e8:	6c f4       	brge	.+26     	; 0x504 <wait+0x20>
- 4ea:	20 e0       	ldi	r18, 0x00	; 0
- 4ec:	30 e0       	ldi	r19, 0x00	; 0
+ 36a:	18 16       	cp	r1, r24
+ 36c:	19 06       	cpc	r1, r25
+ 36e:	6c f4       	brge	.+26     	; 0x38a <wait+0x20>
+ 370:	20 e0       	ldi	r18, 0x00	; 0
+ 372:	30 e0       	ldi	r19, 0x00	; 0
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 4ee:	ef ec       	ldi	r30, 0xCF	; 207
- 4f0:	f7 e0       	ldi	r31, 0x07	; 7
- 4f2:	31 97       	sbiw	r30, 0x01	; 1
- 4f4:	f1 f7       	brne	.-4      	; 0x4f2 <wait+0xe>
- 4f6:	00 c0       	rjmp	.+0      	; 0x4f8 <wait+0x14>
- 4f8:	00 00       	nop
- 4fa:	2f 5f       	subi	r18, 0xFF	; 255
- 4fc:	3f 4f       	sbci	r19, 0xFF	; 255
- 4fe:	82 17       	cp	r24, r18
- 500:	93 07       	cpc	r25, r19
- 502:	a9 f7       	brne	.-22     	; 0x4ee <wait+0xa>
- 504:	08 95       	ret
+ 374:	ef ec       	ldi	r30, 0xCF	; 207
+ 376:	f7 e0       	ldi	r31, 0x07	; 7
+ 378:	31 97       	sbiw	r30, 0x01	; 1
+ 37a:	f1 f7       	brne	.-4      	; 0x378 <wait+0xe>
+ 37c:	00 c0       	rjmp	.+0      	; 0x37e <wait+0x14>
+ 37e:	00 00       	nop
+ 380:	2f 5f       	subi	r18, 0xFF	; 255
+ 382:	3f 4f       	sbci	r19, 0xFF	; 255
+ 384:	82 17       	cp	r24, r18
+ 386:	93 07       	cpc	r25, r19
+ 388:	a9 f7       	brne	.-22     	; 0x374 <wait+0xa>
+ 38a:	08 95       	ret
 
-00000506 <main>:
+0000038c <main>:
+	// 	//EICRA |= 0b00000010;
 	// 	EIMSK |= 0b00010001;
 	//
 	// 	sei();
-	
-	
+
 	init_led_matrix();
- 506:	25 de       	rcall	.-950    	; 0x152 <init_led_matrix>
+ 38c:	e2 de       	rcall	.-572    	; 0x152 <init_led_matrix>
 	clear_led_matrix_display();
- 508:	84 de       	rcall	.-760    	; 0x212 <clear_led_matrix_display>
- 50a:	84 e4       	ldi	r24, 0x44	; 68
-	
-	scroller_set_text("Nerds are the new cool");
- 50c:	93 e0       	ldi	r25, 0x03	; 3
- 50e:	ce de       	rcall	.-612    	; 0x2ac <scroller_set_text>
- 510:	cf ef       	ldi	r28, 0xFF	; 255
+ 38e:	08 df       	rcall	.-496    	; 0x1a0 <clear_led_matrix_display>
+ 390:	89 e2       	ldi	r24, 0x29	; 41
+
+	scroller_set_text("Nerds are the new cool!");
+ 392:	93 e0       	ldi	r25, 0x03	; 3
+ 394:	1e df       	rcall	.-452    	; 0x1d2 <scroller_set_text>
 
 	while (1)
 	{
-		if(interrupted == 0){
-			interrupted = -1;
- 512:	df ef       	ldi	r29, 0xFF	; 255
- 514:	80 91 3c 03 	lds	r24, 0x033C	; 0x80033c <interrupted>
-	
-	scroller_set_text("Nerds are the new cool");
-
-	while (1)
-	{
-		if(interrupted == 0){
- 518:	90 91 3d 03 	lds	r25, 0x033D	; 0x80033d <interrupted+0x1>
- 51c:	89 2b       	or	r24, r25
- 51e:	21 f4       	brne	.+8      	; 0x528 <main+0x22>
- 520:	d0 93 3d 03 	sts	0x033D, r29	; 0x80033d <interrupted+0x1>
-			interrupted = -1;
- 524:	c0 93 3c 03 	sts	0x033C, r28	; 0x80033c <interrupted>
-		}
 		scroller_scroll_left();
- 528:	67 df       	rcall	.-306    	; 0x3f8 <scroller_scroll_left>
-		
+ 396:	9a df       	rcall	.-204    	; 0x2cc <scroller_scroll_left>
+ 398:	e3 df       	rcall	.-58     	; 0x360 <scroller_get_speed>
+
 		wait(scroller_get_speed());
- 52a:	d7 df       	rcall	.-82     	; 0x4da <scroller_get_speed>
- 52c:	db df       	rcall	.-74     	; 0x4e4 <wait>
- 52e:	f2 cf       	rjmp	.-28     	; 0x514 <main+0xe>
+ 39a:	e7 df       	rcall	.-50     	; 0x36a <wait>
+ 39c:	fc cf       	rjmp	.-8      	; 0x396 <main+0xa>
 
-00000530 <toupper>:
- 530:	91 11       	cpse	r25, r1
-	}
- 532:	08 95       	ret
- 534:	81 56       	subi	r24, 0x61	; 97
- 536:	8a 51       	subi	r24, 0x1A	; 26
- 538:	08 f4       	brcc	.+2      	; 0x53c <toupper+0xc>
- 53a:	80 52       	subi	r24, 0x20	; 32
- 53c:	85 58       	subi	r24, 0x85	; 133
- 53e:	08 95       	ret
+0000039e <toupper>:
+ 39e:	91 11       	cpse	r25, r1
+ 3a0:	08 95       	ret
+ 3a2:	81 56       	subi	r24, 0x61	; 97
+ 3a4:	8a 51       	subi	r24, 0x1A	; 26
+ 3a6:	08 f4       	brcc	.+2      	; 0x3aa <toupper+0xc>
+ 3a8:	80 52       	subi	r24, 0x20	; 32
+ 3aa:	85 58       	subi	r24, 0x85	; 133
+ 3ac:	08 95       	ret
 
-00000540 <_exit>:
- 540:	f8 94       	cli
+000003ae <_exit>:
+ 3ae:	f8 94       	cli
 
-00000542 <__stop_program>:
- 542:	ff cf       	rjmp	.-2      	; 0x542 <__stop_program>
+000003b0 <__stop_program>:
+ 3b0:	ff cf       	rjmp	.-2      	; 0x3b0 <__stop_program>
