@@ -4,7 +4,11 @@
 * Created: 6/21/2019 12:25:54 PM
 *  Author: Ruben
 */
+#include <string.h>
+#include <ctype.h>
+
 #include "led_matrix_scroller.h"
+#include "led_matrix_driver.h"
 #include "dictionary.h"
 
 int buffer[350];
@@ -16,12 +20,13 @@ void selectLetters(char *word)
 {
 	for (int i = 0; i < strlen(word); i++)
 	{
-		character letr = look_up_character(word[i]);
-		if(letr.letter != ' ')
+		word[i] = toupper(word[i]);
+		character c = look_up_character(word[i]);
+		if(c.letter != ' ')
 		{
-			for(int j = 0; j < letr.size; j++)
+			for(int j = 0; j < c.size; j++)
 			{
-				buffer[bufferCount] = letr.matrix_structure[j];
+				buffer[bufferCount] = c.matrix_structure[j];
 				bufferCount++;
 			}
 			
@@ -49,14 +54,14 @@ void scrollRight(void)
 		start_led_matrix();
 		switch (j)
 		{
-			case 0: write_led_matrix(0xE0); break; // select display
+			case 0: write_led_matrix(0xE0); break;
 			case 1: write_led_matrix(0xE2); break;
 			case 2: write_led_matrix(0xE8); break;
 		}
 		
 		for (int k = 0; k <= 14; k += 2)
 		{
-			write_led_matrix(k);				   // write the right data of a letter to the right row
+			write_led_matrix(k);
 			write_led_matrix(buffer[(i - updateCount + bufferCount + 1 >= 0)? i - updateCount + bufferCount + 1 : 299]);
 			
 			i++;
@@ -66,7 +71,7 @@ void scrollRight(void)
 	}
 	
 	updateCount++;
-	if (updateCount > bufferCount + 23) // start from the beginning if the whole word is passed
+	if (updateCount > bufferCount + 23)
 	{
 		updateCount = 0;
 	}
@@ -80,14 +85,14 @@ void scrollLeft(void)
 		start_led_matrix();
 		switch (j)
 		{
-			case 0: write_led_matrix(0xE0); break; // select display
+			case 0: write_led_matrix(0xE0); break;
 			case 1: write_led_matrix(0xE2); break;
 			case 2: write_led_matrix(0xE8); break;
 		}
 		
 		for (int k = 0; k <= 14; k += 2)
 		{
-			write_led_matrix(k);				   // write the right data of a letter to the right row
+			write_led_matrix(k);
 			write_led_matrix(buffer[(i - updateCount + bufferCount + 1 >= 0)? i - updateCount + bufferCount + 1 : 299]);
 			
 			i++;
@@ -97,7 +102,7 @@ void scrollLeft(void)
 	}
 	
 	updateCount--;
-	if (updateCount <= 0)  // start from the beginning if the whole word is passed
+	if (updateCount <= 0)
 	{
 		updateCount = bufferCount + 23;
 	}

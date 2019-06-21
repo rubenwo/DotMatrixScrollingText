@@ -32,44 +32,44 @@ void write_led_matrix(unsigned char data)
 void init_led_matrix(void)
 {
 	TWSR = 0;
-	TWBR = 32;	 // TWI clock set to 100kHz, prescaler = 0
+	TWBR = 32;
 	
-	int ints[] = { 0, 2, 8 };
+	int addr[] = { 0, 2, 8 };
 	for (int i = 0; i < 3; i++)
 	{
 		start_led_matrix();
-		write_led_matrix(DOT_MATRIX_BASE_ADDR + ints[i]);	// Display I2C addres + R/W bit
-		write_led_matrix(0x21);	// Internal osc on (page 10 HT16K33)
+		write_led_matrix(DOT_MATRIX_BASE_ADDR + addr[i]);
+		write_led_matrix(0x21);
 		stop_led_matrix();
 		
 		start_led_matrix();
-		write_led_matrix(DOT_MATRIX_BASE_ADDR + ints[i]);	// Display I2C address + R/W bit
-		write_led_matrix(0xA0);	// HT16K33 pins all output
+		write_led_matrix(DOT_MATRIX_BASE_ADDR + addr[i]);
+		write_led_matrix(0xA0);
 		stop_led_matrix();
 		
 		start_led_matrix();
-		write_led_matrix(DOT_MATRIX_BASE_ADDR + ints[i]);	// Display I2C address + R/W bit
-		write_led_matrix(0xE7);	// Display Dimming 8/16 duty cycle
+		write_led_matrix(DOT_MATRIX_BASE_ADDR + addr[i]);
+		write_led_matrix(0xE7);
 		stop_led_matrix();
 		
 		start_led_matrix();
-		write_led_matrix(DOT_MATRIX_BASE_ADDR + ints[i]);	// Display I2C address + R/W bit
-		write_led_matrix(0x81);	// Blink OFF - Display On
+		write_led_matrix(DOT_MATRIX_BASE_ADDR + addr[i]);
+		write_led_matrix(0x81);
 		stop_led_matrix();
 	}
 }
 
 void clear_led_matrix_display(void)
 {
-	int ints[] = { 0, 2, 8 };
+	int addr[] = { 0, 2, 8 };
 
 	for(int i = 0; i < 3;i++){
 		for (int j = 0; j < 8; j++)
 		{
 			start_led_matrix();
-			write_led_matrix(DOT_MATRIX_BASE_ADDR + ints[i]);	// Display I2C addres + R/W bit
-			write_led_matrix(0x00 + (j * 2));	//Select row on matrix
-			write_led_matrix(0x00);	// wtrit data to matrix
+			write_led_matrix(DOT_MATRIX_BASE_ADDR + addr[i]);
+			write_led_matrix(0x00 + (j * 2));
+			write_led_matrix(0x00);
 			stop_led_matrix();
 		}
 	}

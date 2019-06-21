@@ -23,7 +23,7 @@ int main( void )
 	init_led_matrix();
 	clear_led_matrix_display();
 	
-	selectLetters("FUCK DEZE KANKER SHIT");
+	selectLetters("Nerds are the new cool");
 
 	while (1)
 	{

@@ -292,14 +292,7 @@ character look_up_character(char c){
 		{
 			return dictionary[i];
 		}
-		if (c == 60)
-		{
-			return dictionary[28];
-		}
-		if(c == 62)
-		{
-			return dictionary[29];
-		}
+		
 	}
 	
 	return dictionary[0];
